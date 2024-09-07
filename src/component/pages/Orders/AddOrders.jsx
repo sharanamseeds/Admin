@@ -22,7 +22,6 @@ function AddOrders() {
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
-  const [offers, setOffers] = useState([]);
   const [allOffers, setAllOffers] = useState([]);
   const [productForm, setProductForm] = useState({})
 
@@ -165,7 +164,7 @@ function AddOrders() {
       );
       if (response.data?.payload) {
         setProducts(response.data?.payload?.result?.data);
-        setOffers(response.data?.payload?.result?.meta?.offers);
+        // setOffers(response.data?.payload?.result?.meta?.offers);
 
       }
       dispatch(stopLoading());
