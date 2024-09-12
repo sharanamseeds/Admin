@@ -21,5 +21,5 @@ jobs:
           cache: "npm"
       # - run: npm ci
       # - run: npm run build
-      # - run: sudo cp -r /home/ubuntu/runners/front/actions-runner/_work/Agroveda_Admin_Client/Agroveda_Admin_Client/build/ /var/www/html/
+      - run: sudo cp -r /home/milan/runners/front/actions-runner/_work/Admin/Admin/build/ /var/www/html/
 # file name : react CI CD.yml
