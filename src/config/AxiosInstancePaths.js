@@ -2,7 +2,6 @@ const AxiosInstancePaths = {
   login_path: "/authentication/login",
   refresh_token_url: "auth/refresh_token",
   base_url: "https://sharanamagritech.com/api/",
-  // base_url: "https://danveerkarna.work.gd./api/",
   Auth: {
     LOGIN: "auth/login",
     SIGN_UP: "auth/register",
