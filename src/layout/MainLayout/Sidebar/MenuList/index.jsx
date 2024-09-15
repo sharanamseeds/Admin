@@ -58,8 +58,8 @@ const MenuList = ({ onMenuItemClick }) => {
   const items = [
     {
       id: 'navigation',
-      title: 'Admin Panel',
-      caption: 'Dashboard',
+      // title: 'Admin Panel',
+      // caption: 'Dashboard',
       type: 'group',
       icon: icons['NavigationOutlinedIcon'],
       children: [

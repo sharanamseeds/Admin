@@ -8,6 +8,7 @@ import DropDrown from "../../Basic/DropDrown";
 import { FaFilter } from "react-icons/fa";
 import { BsSortAlphaDown, BsSortAlphaDownAlt, BsSortDown, BsSortDownAlt } from "react-icons/bs";
 import {
+  AdminUserFilter,
   nameFilter,
   statusUserFilter,
 } from "../../../constant/Options";
@@ -237,6 +238,8 @@ function UserList({ permission }) {
                   <BsSortAlphaDown color={theme.palette.common.black} size={15} />
                 )
               }
+              value={filter?.sortField &&
+                filter.sortField === "name" ? filter.sortBy : ""}
               onSelect={handleFilter}
               options={nameFilter}
             />
@@ -253,6 +256,8 @@ function UserList({ permission }) {
                   <BsSortAlphaDown color={theme.palette.common.black} size={15} />
                 )
               }
+              value={filter?.sortField &&
+                filter.sortField === "email" ? filter.sortBy : ""}
               onSelect={handleFilter}
               options={nameFilter}
             />
@@ -269,6 +274,8 @@ function UserList({ permission }) {
                   <BsSortAlphaDown color={theme.palette.common.black} size={15} />
                 )
               }
+              value={filter?.sortField &&
+                filter.sortField === "contact_number" ? filter.sortBy : ""}
               onSelect={handleFilter}
               options={nameFilter}
             />
@@ -280,6 +287,17 @@ function UserList({ permission }) {
               icon={<FaFilter color={theme.palette.common.black} size={12} />}
               onSelect={handleFilter}
               options={createGeneralOptions(roles, "role_name", "_id")}
+              value={filter?.role_id ? filter.role_id : ""}
+            />
+          </div>
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            App User
+            <DropDrown
+              name="is_app_user"
+              icon={<FaFilter color={theme.palette.common.black} size={12} />}
+              onSelect={handleFilter}
+              options={AdminUserFilter}
+              value={filter?.is_app_user ? filter.is_app_user : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -295,6 +313,7 @@ function UserList({ permission }) {
               }
               onSelect={handleFilter}
               options={statusUserFilter}
+              value={"is_verified" in filter ? filter.is_verified || "false" : ""}
             />
           </div>
           {permission.can_delete || permission?.can_read || permission?.can_update ? <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>Action</div> : ''}
@@ -323,6 +342,9 @@ function UserList({ permission }) {
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
               {roles.find((role) => role._id === user.role_id)?.role_name || ""}
+            </div>
+            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+              {user.is_app_user ? "App User" : 'Admin User'}
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
               {user.is_verified ? "Verified" : 'Unverified'}

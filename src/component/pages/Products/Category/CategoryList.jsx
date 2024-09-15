@@ -215,6 +215,9 @@ function CategoryList({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "category_name" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>

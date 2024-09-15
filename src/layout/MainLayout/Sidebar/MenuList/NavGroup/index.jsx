@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import { List, Typography } from '@mui/material';
 
 import NavItem from '../NavItem';
@@ -11,7 +11,7 @@ import NavCollapse from '../NavCollapse';
 // ==============================|| NAVGROUP ||============================== //
 
 const NavGroup = ({ item, onMenuItemClick }) => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const items = item.children.map((menu) => {
     switch (menu.type) {
       case 'collapse':
@@ -29,16 +29,6 @@ const NavGroup = ({ item, onMenuItemClick }) => {
 
   return (
     <List
-      subheader={
-        <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
-          {item.title}
-          {item.caption && (
-            <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-              {item.caption}
-            </Typography>
-          )}
-        </Typography>
-      }
     >
       {items}
     </List>

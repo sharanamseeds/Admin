@@ -105,6 +105,9 @@ function ViewCategory() {
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12} sm={12}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  Description
+                </Typography>
                 <ShowDescription description={category?.description} />
               </Grid>
             </Grid>

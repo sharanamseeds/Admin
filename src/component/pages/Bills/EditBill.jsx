@@ -177,7 +177,11 @@ function EditBill() {
                                 <FilledInput label="discount_amount" value={bill?.discount_amount || "Not Set"} disabled />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FilledInput label="createdAt" value={bill?.createdAt ? new Date(bill.createdAt).toLocaleDateString() : "Not Set"} disabled />
+                                <FilledInput label="createdAt" value={bill?.createdAt ? new Date(bill.createdAt).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                }) : "Not Set"} disabled />
                             </Grid>
                             <Grid item xs={12} md={6} >
                                 <SelectInput

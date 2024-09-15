@@ -89,21 +89,17 @@ function ViewBrand() {
                   value={brand?.brand_name || "Inactive"}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
-                <FilledInput
-                  label={"tag_line"}
-                  value={brand?.tag_line || "Inactive"}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <SelectInput
-                  name="language"
-                  startEdit={true}
-                  seperatedLabel={false}
-                  defaultValue={langCode}
-                  options={createGeneralOptions(languages, "lang_name", "lang_code")}
-                  handleChange={(name, value) => setLangCode(value)}
-                />
+              <Grid item xs={12} sm={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
+                <div>
+                  <SelectInput
+                    name="language"
+                    startEdit={true}
+                    seperatedLabel={false}
+                    defaultValue={langCode}
+                    options={createGeneralOptions(languages, "lang_name", "lang_code")}
+                    handleChange={(name, value) => setLangCode(value)}
+                  />
+                </div>
               </Grid>
             </Grid>
           </CardContent>

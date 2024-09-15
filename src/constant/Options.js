@@ -17,6 +17,11 @@ export const statusUserFilter = [
   { label: "verified", value: true },
 ];
 
+export const AdminUserFilter = [
+  { label: "App User", value: true },
+  { label: "Admin", value: false },
+];
+
 export const dateFilter = [
   { label: "Newest First", value: "desc" },
   { label: "Oldest First", value: "asc" },

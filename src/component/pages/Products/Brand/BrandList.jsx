@@ -213,6 +213,9 @@ function BrandList({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "brand_name" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>

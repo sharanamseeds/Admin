@@ -8,6 +8,7 @@ import { drawerWidth } from '../../../config/config.js';
 // import NavCard from './MenuList/NavCard.jsx';
 
 import logo from '../../../assets/images/1.png';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = styled((props) => <nav {...props} />)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -19,6 +20,7 @@ const Nav = styled((props) => <nav {...props} />)(({ theme }) => ({
 // ==============================|| SIDEBAR ||============================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const drawer = (
@@ -42,7 +44,9 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           }}
         >
           <Grid item>
-            <img src={logo} alt="Logo" width="138" height="32" />
+            <img src={logo} style={{ cursor: 'pointer' }} alt="Logo" width="138" height="32" onClick={() => {
+              navigate("/")
+            }} />
           </Grid>
         </Grid>
       </Box>

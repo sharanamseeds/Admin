@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, IconButton, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaFilter } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
@@ -13,6 +13,7 @@ import { ledgerStatus, nameFilter } from "../../../constant/Options";
 import { BsSortAlphaDown, BsSortAlphaDownAlt } from "react-icons/bs";
 import Pagination from "../../Basic/Pagination";
 import { saveAs } from 'file-saver'; // You'll need to install this package
+import { snakeToTitleCase } from "../../../helpers";
 
 function LedgerList({ permission }) {
     const navigate = useNavigate();
@@ -191,21 +192,17 @@ function LedgerList({ permission }) {
                             }
                             onSelect={handleFilter}
                             options={nameFilter}
+                            value={filter?.sortField &&
+                                filter.sortField === "invoice_id" ?
+                                filter.sortBy : ""}
                         />
                     </div>
                     <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
                         Type
                         <DropDrown
                             name="type"
-                            icon={
-                                filter?.sortField &&
-                                    filter.sortField === "type" &&
-                                    filter.sortBy !== "asc" ? (
-                                    <BsSortAlphaDownAlt color={theme.palette.common.black} size={15} />
-                                ) : (
-                                    <BsSortAlphaDown color={theme.palette.common.black} size={15} />
-                                )
-                            }
+                            icon={<FaFilter color="#0B476D" size={12} />}
+                            value={"type" in filter ? filter.type || "false" : ""}
                             onSelect={handleFilter}
                             options={ledgerStatus}
                         />
@@ -225,6 +222,9 @@ function LedgerList({ permission }) {
                             }
                             onSelect={handleFilter}
                             options={nameFilter}
+                            value={filter?.sortField &&
+                                filter.sortField === "payment_amount" ?
+                                filter.sortBy : ""}
                         />
                     </div>
                     <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -242,6 +242,9 @@ function LedgerList({ permission }) {
                             }
                             onSelect={handleFilter}
                             options={nameFilter}
+                            value={filter?.sortField &&
+                                filter.sortField === "bill_amount" ?
+                                filter.sortBy : ""}
                         />
                     </div>
                     <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -269,7 +272,7 @@ function LedgerList({ permission }) {
                         {bill.invoice_id}
                     </div>
                     <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-                        {bill.type}
+                        {snakeToTitleCase(bill.type)}
                     </div>
                     <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
                         {bill.payment_amount}

@@ -69,6 +69,11 @@ const MainLayout = () => {
             marginRight: 'inherit'
           })
         }}
+        onClick={() => {
+          if (drawerOpen) {
+            handleDrawerToggle()
+          }
+        }}
       >
         <Box sx={theme.mixins.toolbar} />
         <OutletDiv>

@@ -192,7 +192,11 @@ function RoleList({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "role_name" ?
+                filter.sortBy : ""}
             />
+
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
             Active
@@ -207,6 +211,8 @@ function RoleList({ permission }) {
               }
               onSelect={handleFilter}
               options={activeFilter}
+              value={"is_active" in filter ? filter.is_active || "false" : ""}
+
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>

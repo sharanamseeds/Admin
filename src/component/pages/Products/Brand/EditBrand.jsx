@@ -176,7 +176,7 @@ function EditBrand() {
                   handleChange={handleSelectChange}
                 />
               </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
+              {/* <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
                   name={"tag_line"}
                   startEdit={true}
@@ -184,7 +184,7 @@ function EditBrand() {
                   error={errors?.tag_line?.message}
                   handleChange={handleSelectChange}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
                   name="language"

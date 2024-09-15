@@ -9,9 +9,11 @@ import axiosInstance from '../../../config/AxiosConfig';
 import AxiosInstancePaths from '../../../config/AxiosInstancePaths';
 import ImageWithPreview from '../../Basic/ImagePreview';
 import html2pdf from 'html2pdf.js';
+import { snakeToTitleCase } from '../../../helpers';
 
 function ViewBill() {
     const [bill, setBill] = useState();
+    const [billInfo, setBillInfo] = useState()
     const { id } = useParams();
     const theme = useTheme();
     const dispatch = useDispatch();
@@ -25,6 +27,7 @@ function ViewBill() {
             );
             if (response.data?.payload) {
                 setBill(response.data?.payload?.result);
+                setBillInfo(response.data?.payload?.bill);
             }
             dispatch(stopLoading());
         } catch (error) {
@@ -72,36 +75,176 @@ function ViewBill() {
 
     return (
         <Grid container spacing={2} alignItems="stretch" justifyContent={'end'}>
+            <Grid item xs={12} >
+                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent style={{ flex: 1 }}>
+                        <Typography variant="h4" style={{ fontWeight: "bold", }}>
+                            Invoice No : {bill?.invoice_id}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Grid>
             <Grid item xs={12} md={6}>
                 <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <CardContent style={{ flex: 1 }}>
                         <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
-                            Bill Details
+                            Buyer Details
+                        </Typography>
+                        <p>Name: {billInfo?.sellerName}</p>
+                        <p>Address: {billInfo?.sellerAddress}</p>
+                        <p>Email: {billInfo?.sellerEmail}</p>
+                        <p>Phone: {billInfo?.sellerPhone}</p>
+                        <p>GST No.: {billInfo?.sellerGST}</p>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent style={{ flex: 1 }}>
+                        <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
+                            Seller Details
+                        </Typography>
+                        <p>Name: {billInfo?.buyerName}</p>
+                        <p>Address: {billInfo?.buyerAddress}</p>
+                        <p>Email: {billInfo?.buyerEmail}</p>
+                        <p>Phone: {billInfo?.buyerPhone}</p>
+                        <p>GST No.: {billInfo?.buyerGST}</p>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} >
+                <div style={{ width: "100%", marginTop: "1rem" }}>
+                    <div style={{
+                        fontWeight: "bold",
+                        color: theme.palette.text.primary,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "15px",
+                        marginTop: "1rem",
+                        backgroundColor: theme.palette.background.paper,
+                        borderRadius: "10px",
+                        boxShadow: theme.shadows[1],
+                    }}>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Item Name
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Product Code
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Man. Date
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Exe. Date
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Quantity
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Rate
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            GST Rate
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            GST Amount
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            Discount
+                        </div>
+                    </div>
+                </div>
+                {billInfo?.items?.length > 0 ? billInfo?.items?.map((item, itemIndex) => (
+                    <div
+                        key={itemIndex}
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            padding: "15px",
+                            marginTop: "1rem",
+                            backgroundColor: theme.palette.background.paper,
+                            borderRadius: "10px",
+                            boxShadow: theme.shadows[1],
+                        }}
+                    >
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.product_name}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.product_code}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.manufacture_date}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.expiry_date}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.quantity}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.rate}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.gstRate}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.gstAmount}
+                        </div>
+                        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            {item.discount}
+                        </div>
+                    </div>
+                )) : (
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            padding: "15px",
+                            marginTop: "1rem",
+                            backgroundColor: theme.palette.background.paper,
+                            borderRadius: "10px",
+                            boxShadow: theme.shadows[1],
+                        }}
+                    >
+                        No Products Found
+                    </div>
+                )}
+            </Grid>
+
+            <Grid item xs={12} >
+                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent style={{ flex: 1, textAlign: 'right' }}>
+                        <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
+                            Amount Details
+                        </Typography>
+                        <p>Order Amount: {billInfo?.order_amount}</p>
+                        <p>Discount Amount: {billInfo?.discount_amount}</p>
+                        <p>Tax Amount: {billInfo?.tax_amount}</p>
+                        <p>Billing Amount: {billInfo?.billing_amount}</p>
+                    </CardContent>
+                </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent style={{ flex: 1 }}>
+                        <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
+                            Basic Info
                         </Typography>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
-                                <FilledInput label="invoice" value={bill?.invoice_id || "Not Set"} disabled />
+                                <FilledInput label="payment_status" value={snakeToTitleCase(bill?.payment_status) || "Not Set"} disabled />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FilledInput label="order_amount" value={bill?.order_amount || "Not Set"} disabled />
+                                <FilledInput label="createdAt" value={bill?.createdAt ? new Date(bill.createdAt).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                }) : "Not Set"} disabled />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FilledInput label="bill_amount" value={bill?.bill_amount || "Not Set"} disabled />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FilledInput label="tax_amount" value={bill?.tax_amount || "Not Set"} disabled />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FilledInput label="discount_amount" value={bill?.discount_amount || "Not Set"} disabled />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FilledInput label="payment_status" value={bill?.payment_status || "Not Set"} disabled />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FilledInput label="createdAt" value={bill?.createdAt ? new Date(bill.createdAt).toLocaleDateString() : "Not Set"} disabled />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FilledInput label="payment_method" value={bill?.payment_method || "Not Set"} disabled />
+                                <FilledInput label="payment_method" value={snakeToTitleCase(bill?.payment_method) || "Not Set"} disabled />
                             </Grid>
                         </Grid>
                         <Box sx={{ display: "flex", justifyContent: "center", margin: "1rem 0px" }}>

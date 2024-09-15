@@ -26,6 +26,7 @@ import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { useTheme } from '@mui/material/styles';
 import TableHeaderPart from "../../Basic/TableHeaderPart";
 import { saveAs } from 'file-saver'; // You'll need to install this package
+import { snakeToTitleCase } from "../../../helpers";
 
 function OrdersList({ permission }) {
   const navigate = useNavigate();
@@ -220,6 +221,9 @@ function OrdersList({ permission }) {
               }
               onSelect={handleFilter}
               options={dateFilter}
+              value={filter?.sortField &&
+                filter.sortField === "createdAt" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -237,6 +241,9 @@ function OrdersList({ permission }) {
               }
               onSelect={handleFilter}
               options={totalAmountFilter}
+              value={filter?.sortField &&
+                filter.sortField === "billing_amount" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -249,6 +256,7 @@ function OrdersList({ permission }) {
               icon={<FaFilter color="#0B476D" size={12} />}
               onSelect={handleFilter}
               options={orderStatusOption}
+              value={"status" in filter ? filter.status || "false" : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -270,16 +278,20 @@ function OrdersList({ permission }) {
           }}
         >
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-            {new Date(order.createdAt).toLocaleDateString()}
+            {new Date(order.createdAt).toLocaleDateString('en-GB', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+            })}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {order.billing_amount}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-            {order.is_creditable ? "creditable" : 'regular'}
+            {order.is_creditable ? "Creditable" : 'Regular'}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-            {order.status}
+            {snakeToTitleCase(order.status)}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {permission?.can_read ? <IconButton

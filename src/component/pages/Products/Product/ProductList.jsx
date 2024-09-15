@@ -215,6 +215,9 @@ function ProductList({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "product_name" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -232,6 +235,9 @@ function ProductList({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "product_code" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>

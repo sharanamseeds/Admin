@@ -12,9 +12,9 @@ import AxiosInstancePaths from "../../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../../helpers/notificationService";
 import { useTheme } from '@mui/material/styles';
 import TableHeaderPart from "../../../Basic/TableHeaderPart";
-import { nameFilter } from "../../../../constant/Options";
+import { activeFilter, nameFilter } from "../../../../constant/Options";
 import DropDrown from "../../../Basic/DropDrown";
-import { BsSortAlphaDown, BsSortAlphaDownAlt } from "react-icons/bs";
+import { BsSortAlphaDown, BsSortAlphaDownAlt, BsSortDown, BsSortDownAlt } from "react-icons/bs";
 import { saveAs } from 'file-saver'; // You'll need to install this package
 
 function ListOffers({ permission }) {
@@ -215,6 +215,9 @@ function ListOffers({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "offer_name" ?
+                filter.sortBy : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -232,6 +235,25 @@ function ListOffers({ permission }) {
               }
               onSelect={handleFilter}
               options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "offer_code" ?
+                filter.sortBy : ""}
+            />
+          </div>
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            Active
+            <DropDrown
+              name="is_active"
+              icon={
+                filter?.is_active ? (
+                  <BsSortDown color={theme.palette.common.black} size={15} />
+                ) : (
+                  <BsSortDownAlt color={theme.palette.common.black} size={15} />
+                )
+              }
+              onSelect={handleFilter}
+              options={activeFilter}
+              value={"is_active" in filter ? filter.is_active || "false" : ""}
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -260,6 +282,9 @@ function ListOffers({ permission }) {
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {offer.offer_code}
+          </div>
+          <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
+            {offer.is_active ? "Active" : "Inactive"}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {permission?.can_read ? <IconButton

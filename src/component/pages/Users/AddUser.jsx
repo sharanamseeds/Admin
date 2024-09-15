@@ -178,6 +178,24 @@ function AddUser() {
                   error={errors?.profile?.message}
                 />
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <SwitchInput
+                  name="App User"
+                  startEdit={true}
+                  handleChange={(name, value) => handleSelectChange('is_app_user', value)}
+                  error={errors?.is_app_user?.message}
+                  defaultValue={formData?.is_app_user}
+                />
+              </Grid>
+              <Grid item xs={12} >
+                <TextInput
+                  name={"password"}
+                  type="password"
+                  startEdit={true}
+                  error={errors?.password?.message}
+                  handleChange={handleSelectChange}
+                />
+              </Grid>
             </Grid>
             {/* <Grid container style={{ marginTop: '0.3rem' }}>
               <Grid item xs={12} sm={6}>

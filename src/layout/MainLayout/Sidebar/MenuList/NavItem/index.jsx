@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 
 // third party
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 
 // assets
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -18,8 +17,10 @@ import { MENU_OPEN } from '../../../../../redux/slices/customizationSlice';
 
 const NavItem = ({ item, level, onMenuItemClick }) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
+  // const customization = useSelector((state) => state.customization);
   const dispatch = useDispatch();
+  const location = useLocation(); // Get the current location object
+
   const Icon = item.icon;
   const itemIcon = item.icon ? <Icon color="inherit" /> : <ArrowForwardIcon color="inherit" fontSize={level > 0 ? 'inherit' : 'default'} />;
 
@@ -32,6 +33,8 @@ const NavItem = ({ item, level, onMenuItemClick }) => {
     listItemProps = { component: 'a', href: item.url };
   }
 
+  const isSelected = location.pathname.toLowerCase().includes(item.id.toLowerCase());
+
   return (
     <ListItemButton
       disabled={item.disabled}
@@ -41,7 +44,7 @@ const NavItem = ({ item, level, onMenuItemClick }) => {
         marginBottom: '5px',
         pl: `${level * 16}px`
       }}
-      selected={customization.isOpen === item.id}
+      selected={isSelected} // Set selected based on route path
       component={Link}
       onClick={() => {
         dispatch({ type: MENU_OPEN, isOpen: item.id });
@@ -56,7 +59,7 @@ const NavItem = ({ item, level, onMenuItemClick }) => {
       <ListItemIcon sx={{ minWidth: 25 }}>{itemIcon}</ListItemIcon>
       <ListItemText
         primary={
-          <Typography sx={{ pl: 1.4 }} variant={customization.isOpen === item.id ? 'subtitle1' : 'body1'} color="inherit">
+          <Typography sx={{ pl: 1.4 }} variant={isSelected ? 'subtitle1' : 'body1'} color="inherit">
             {item.title}
           </Typography>
         }

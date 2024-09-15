@@ -1,8 +1,7 @@
 import React from "react";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { IconButton, Menu, MenuItem, ListItemText } from "@mui/material";
 
-
-const DropDrown = ({ icon, onSelect, name, options }) => {
+const DropDrown = ({ icon, onSelect, name, options, value = "" }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -13,9 +12,18 @@ const DropDrown = ({ icon, onSelect, name, options }) => {
     setAnchorEl(null);
   };
 
-  const handleSelect = (value) => {
+  const handleSelect = (selectedValue) => {
     handleClose();
-    onSelect(name, value);
+    onSelect(name, selectedValue);
+  };
+
+  const isSelected = (optionValue) => {
+
+    // Special handling for boolean false
+    if (value === false && optionValue === false) {
+      return true;
+    }
+    return optionValue === value || optionValue?.toString() === value?.toString();
   };
 
   return (
@@ -26,8 +34,14 @@ const DropDrown = ({ icon, onSelect, name, options }) => {
           <MenuItem
             key={optionIndex}
             onClick={() => handleSelect(option.value)}
+            selected={isSelected(option.value)} // Mark item as selected
           >
-            {option.label}
+            <ListItemText
+              primary={option.label}
+              style={{
+                fontWeight: isSelected(option.value) ? "bold" : "normal",
+              }}
+            />
           </MenuItem>
         ))}
       </Menu>

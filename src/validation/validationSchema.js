@@ -122,6 +122,8 @@ export const verifyVerificationCodeSchema = yup.object().shape({
 export const UserSchema = yup.object().shape({
   is_verified: yup.boolean(),
   is_blocked: yup.boolean(),
+  password: yup.string().required(),
+  is_app_user: yup.boolean(),
   name: yup.string(),
   agro_name: yup.string().required(),
   contact_number: yup.string().required(),
@@ -152,6 +154,7 @@ export const UserSchema = yup.object().shape({
 export const UpdateUserSchema = yup.object().shape({
   is_verified: yup.boolean(),
   is_blocked: yup.boolean(),
+  is_app_user: yup.boolean(),
   name: yup.string(),
   contact_number: yup.string(),
   gst_number: yup.string().length(15),

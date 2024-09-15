@@ -1,6 +1,7 @@
 const AxiosInstancePaths = {
   login_path: "/authentication/login",
   refresh_token_url: "auth/refresh_token",
+  // base_url: "http://localhost:8080/api/",
   base_url: "https://sharanamagritech.com/api/",
   Auth: {
     LOGIN: "auth/login",

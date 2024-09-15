@@ -145,6 +145,16 @@ function ViewUser() {
                   disabled
                 />
               </Grid>
+              <Grid item xs={12} md={5.8} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
+                <div>
+                  <SwitchInput
+                    name="App User"
+                    defaultValue={user?.is_app_user}
+                    startEdit={true}
+                    isDisabel={true}
+                  />
+                </div>
+              </Grid>
             </Grid>
           </CardContent>
         </Card>

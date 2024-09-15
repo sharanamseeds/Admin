@@ -144,3 +144,13 @@ export const formatDate = (date) => {
   const year = d.getFullYear();
   return `${year}-${month}-${day}`;
 };
+
+export const snakeToTitleCase = (snakeCaseStr) => {
+  if (!snakeCaseStr) return "";
+  const words = snakeCaseStr.split("_");
+  const titleCaseStr = words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return titleCaseStr;
+};

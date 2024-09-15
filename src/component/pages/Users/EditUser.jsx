@@ -357,6 +357,7 @@ function EditUser() {
                   />
                 </div>
               </Grid>
+
               <Grid item xs={12} sm={6} >
                 <SelectInput
                   name="role_id"
@@ -385,6 +386,14 @@ function EditUser() {
                   startEdit={true}
                   handleChange={handleSelectChange}
                   error={errors?.is_active?.message}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <SwitchInput
+                  name="App User"
+                  defaultValue={user?.is_app_user}
+                  startEdit={true}
+                  isDisabel={true}
                 />
               </Grid>
             </Grid>
