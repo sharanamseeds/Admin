@@ -113,7 +113,7 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Name"
+          label="Name*"
           margin="normal"
           InputProps={{
             startAdornment: (
@@ -130,6 +130,11 @@ const Signup = () => {
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
           onChange={(e) => handleSelectChange("name", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSignUp()
+            }
+          }}
         />
         {errors?.name?.message && (
           <div style={{ textAlign: 'left' }}>
@@ -139,7 +144,7 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Gst Number"
+          label="Gst Number*"
           margin="normal"
           InputProps={{
             startAdornment: (
@@ -156,6 +161,11 @@ const Signup = () => {
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
           onChange={(e) => handleSelectChange("gst_number", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSignUp()
+            }
+          }}
         />
         {errors?.gst_number?.message && (
           <div style={{ textAlign: 'left' }}>
@@ -165,7 +175,7 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Email"
+          label="Email*"
           margin="normal"
           InputProps={{
             startAdornment: (
@@ -182,6 +192,11 @@ const Signup = () => {
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
           onChange={(e) => handleSelectChange("email", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSignUp()
+            }
+          }}
         />
         {errors?.email?.message && (
           <div style={{ textAlign: 'left' }}>
@@ -191,7 +206,7 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Password"
+          label="Password*"
           type={showPassword ? "text" : "password"}
           margin="normal"
           InputProps={{
@@ -218,6 +233,11 @@ const Signup = () => {
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
           onChange={(e) => handleSelectChange("password", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSignUp()
+            }
+          }}
         />
         {errors?.password?.message && (
           <div style={{ textAlign: 'left' }}>
@@ -227,7 +247,7 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Confirm Password"
+          label="Confirm Password*"
           type={showConfirmPassword ? "text" : "password"}
           margin="normal"
           InputProps={{
@@ -254,6 +274,11 @@ const Signup = () => {
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
           onChange={(e) => handleSelectChange("confirm_password", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSignUp()
+            }
+          }}
         />
         {errors?.confirm_password?.message && (
           <div style={{ textAlign: 'left' }}>
@@ -262,8 +287,17 @@ const Signup = () => {
         )}
         <div style={{ textAlign: "left" }}>
           <FormControlLabel
-            control={<Checkbox checked={terms} name="terms" onChange={(e) => { setTerms(e.target.checked) }} />}
-            label="I agree the Terms & Conditions"
+            control={<Checkbox checked={terms} name="terms" onChange={(e) => {
+              setErrors((prevErrors) => {
+                let newErrors = { ...prevErrors };
+                let current = newErrors;
+                delete current?.terms;
+                return newErrors;
+              });
+
+              setTerms(e.target.checked)
+            }} />}
+            label="I agree the Terms & Conditions*"
           />
         </div>
         {errors?.terms?.message && (

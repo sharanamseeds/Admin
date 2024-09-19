@@ -13,6 +13,7 @@ import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice
 import SelectInput from "../../../Form/SelectInput";
 import { useTheme } from "@mui/material";
 import ImageWithPreview from "../../../Basic/ImagePreview";
+import BackNavigate from "../../../Basic/BackNavigate";
 
 
 function EditBrand() {
@@ -141,6 +142,9 @@ function EditBrand() {
 
   return (
     <Grid container spacing={2} alignItems="stretch" style={{ display: 'flex', justifyContent: 'end' }}>
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -208,20 +212,6 @@ function EditBrand() {
             gap: "1rem",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.error.main,
-              "&:hover": {
-                backgroundColor: theme.palette.error.main,
-              },
-            }}
-            onClick={() => navigate("/brands")}
-          >
-            Cancel
-          </Button>
           <Button
             variant="contained"
 

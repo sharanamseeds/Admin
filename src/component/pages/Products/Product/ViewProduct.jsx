@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Button, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import SwitchInput from "../../../Form/SwitchInput";
 import { createGeneralOptions, formatDate } from "../../../../helpers";
 // import SelectMultipleInput from "../../../Form/SelectMultipleInput";
@@ -11,15 +11,14 @@ import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice
 import AxiosInstancePaths from "../../../../config/AxiosInstancePaths";
 import { showErrorMessage } from "../../../../helpers/notificationService";
 import SelectInput from "../../../Form/SelectInput";
-import { useTheme } from "@mui/material";
 import ImageWithPreview from "../../../Basic/ImagePreview";
 import ShowDescription from "../../../Form/ShowDescription";
+import BackNavigate from "../../../Basic/BackNavigate";
 
 
 function ViewProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const theme = useTheme();
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
   // const [offers, setOffers] = useState([]);
@@ -145,6 +144,9 @@ function ViewProduct() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -301,26 +303,6 @@ function ViewProduct() {
             Description
           </Typography>
           <ShowDescription description={product?.description} />
-        </Box>
-      </Grid>
-
-      {/* Back Button */}
-      <Grid item xs={12}>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.warning.main,
-              "&:hover": {
-                backgroundColor: theme.palette.warning.main,
-              },
-            }}
-            onClick={() => window.history.back()}
-          >
-            Back
-          </Button>
         </Box>
       </Grid>
     </Grid>

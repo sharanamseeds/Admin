@@ -25,6 +25,7 @@ import { Card, CardContent } from "@mui/material";
 import ImageWithPreview from "../../Basic/ImagePreview";
 import FilledInput from "../../Basic/FilledInput";
 import ConfirmationDialog from "../../Basic/ConfirmationDialog";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function EditUser() {
   const theme = useTheme();
@@ -271,6 +272,9 @@ function EditUser() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <ConfirmationDialog
         open={dialogOpen}
         onClose={handleCloseDialog}
@@ -588,22 +592,23 @@ function EditUser() {
                 handleChange={handleMoneySelectChange}
               />
             </Grid>
-            <Grid item xs={12} md={6} lg={2}>
-              <Button
-                variant="contained"
-
-                sx={{
-                  color: theme.palette.common.white,
-                  width: "max-content",
-                  backgroundColor: theme.palette.success.main,
-                  "&:hover": {
+            <Grid item xs={12} md={6} lg={2} style={{ display: 'flex', justifyContent: 'end', alignItems: 'end' }}>
+              <div>
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: theme.palette.common.white,
+                    width: "max-content",
                     backgroundColor: theme.palette.success.main,
-                  },
-                }}
-                onClick={addMoney}
-              >
-                Add Money
-              </Button>
+                    "&:hover": {
+                      backgroundColor: theme.palette.success.main,
+                    },
+                  }}
+                  onClick={addMoney}
+                >
+                  Add Money
+                </Button>
+              </div>
             </Grid>
           </Grid>
 
@@ -792,20 +797,6 @@ function EditUser() {
             gap: "1rem",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.error.main,
-              "&:hover": {
-                backgroundColor: theme.palette.error.main,
-              },
-            }}
-            onClick={() => navigate("/users")}
-          >
-            Cancel
-          </Button>
           <Button
             variant="contained"
 

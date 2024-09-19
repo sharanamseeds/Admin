@@ -13,6 +13,7 @@ import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificationService";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function AddOrders() {
   const navigate = useNavigate()
@@ -218,6 +219,9 @@ function AddOrders() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent>
@@ -392,20 +396,6 @@ function AddOrders() {
       </Grid>
 
       <Grid item xs={12} display="flex" gap={"1rem"} justifyContent="end">
-        <Button
-          variant="contained"
-          sx={{
-            color: theme.palette.common.white,
-            width: "max-content",
-            backgroundColor: theme.palette.error.main,
-            "&:hover": {
-              backgroundColor: theme.palette.error.main,
-            },
-          }}
-          onClick={() => navigate("/orders")}
-        >
-          Cancel
-        </Button>
         <Button
           fullWidth
           variant="contained"

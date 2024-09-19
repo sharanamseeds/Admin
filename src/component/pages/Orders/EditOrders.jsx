@@ -16,6 +16,7 @@ import TextInput from "../../Form/TextInput";
 import SwitchInput from "../../Form/SwitchInput";
 import ImageWithPreview from "../../Basic/ImagePreview";
 import FileUpload from "../../Form/FileUpload";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function EditOrder() {
   const { id } = useParams();
@@ -228,6 +229,9 @@ function EditOrder() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} >
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -490,20 +494,6 @@ function EditOrder() {
               Return Order
             </Button> : ''}
 
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.error.main,
-              "&:hover": {
-                backgroundColor: theme.palette.error.main,
-              },
-            }}
-            onClick={() => navigate("/orders")}
-          >
-            Cancel
-          </Button>
           {order?.status === "return_fulfilled" || order?.status === "delivered" ? "" :
             <Button
               variant="contained"

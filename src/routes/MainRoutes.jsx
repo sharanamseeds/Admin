@@ -62,7 +62,8 @@ const EditLanguage = Loadable(lazy(() => import("../component/pages/Languages/Ed
 const ViewLanguage = Loadable(lazy(() => import("../component/pages/Languages/ViewLanguage")));
 const AddLanguage = Loadable(lazy(() => import("../component/pages/Languages/AddLanguage")));
 
-
+const EditProfile = Loadable(lazy(() => import("../component/pages/Users/EditProfile")));
+const ViewProfile = Loadable(lazy(() => import("../component/pages/Users/ViewProfile")));
 
 const MainRoutes = () => {
   const permissions = usePermissions();
@@ -90,6 +91,24 @@ const MainRoutes = () => {
           {
             path: '',
             element: permissions && permissions?.length > 0 ? <DashboardDefault /> : < UnauthorizedDashboard />
+          },
+        ],
+      },
+      {
+        path: '/profile',
+        element: <AuthLayout />,
+        children: [
+          {
+            path: 'edit/:id',
+            element: (
+              <EditProfile />
+            ),
+          },
+          {
+            path: 'view/:id',
+            element: (
+              <ViewProfile />
+            ),
           },
         ],
       },

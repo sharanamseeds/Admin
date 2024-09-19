@@ -112,7 +112,7 @@ const Login = () => {
           fullWidth
           className="defaultText"
           autoComplete="false"
-          label="Email"
+          label="Email*"
           margin="normal"
           value={formData.email}
           InputProps={{
@@ -123,6 +123,11 @@ const Login = () => {
             ),
           }}
           onChange={(e) => handleSelectChange("email", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleLogin()
+            }
+          }}
           style={{
             input: { padding: '0.8rem 0px', color: theme.palette.common.black },
             '.MuiOutlinedInput-root, .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.common.black },
@@ -139,7 +144,7 @@ const Login = () => {
           fullWidth
           className="defaultText"
           autoComplete="false"
-          label="Password"
+          label="Password*"
           type={showConfirmPassword ? "text" : "password"}
           margin="normal"
           value={formData.password}
@@ -160,6 +165,11 @@ const Login = () => {
             ),
           }}
           onChange={(e) => handleSelectChange("password", e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleLogin()
+            }
+          }}
           style={{
             input: { padding: '0.8rem 0px', color: theme.palette.common.black },
             '.MuiOutlinedInput-root, .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.common.black },

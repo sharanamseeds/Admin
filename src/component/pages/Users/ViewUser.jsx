@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Grid, Box, Typography, Button, Card, CardContent, useTheme, IconButton } from "@mui/material";
+import { Grid, Box, Typography, Card, CardContent, useTheme, IconButton } from "@mui/material";
 import { FaEye } from "react-icons/fa";
 import ImageWithPreview from "../../Basic/ImagePreview";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import { showErrorMessage } from "../../../helpers/notificationService";
 import FilledInput from "../../Basic/FilledInput";
 import SwitchInput from "../../Form/SwitchInput";
 import { formatDate } from "../../../helpers";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function ViewUser() {
   const theme = useTheme();
@@ -85,6 +86,9 @@ function ViewUser() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -500,26 +504,6 @@ function ViewUser() {
           </div>
         )}
       </Grid> : ''}
-
-      {/* Back Button */}
-      <Grid item xs={12}>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.warning.main,
-              "&:hover": {
-                backgroundColor: theme.palette.warning.main,
-              },
-            }}
-            onClick={() => window.history.back()}
-          >
-            Back
-          </Button>
-        </Box>
-      </Grid>
     </Grid>
   );
 }

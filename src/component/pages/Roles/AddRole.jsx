@@ -15,6 +15,7 @@ import {
 } from "../../../helpers/notificationService";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import BackNavigate from "../../Basic/BackNavigate";
 
 
 function AddRole() {
@@ -154,6 +155,9 @@ function AddRole() {
 
   return (
     <Grid container spacing={2} >
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="flex-start" spacing={2}>
           <Grid item xs={12} md={4}>
@@ -279,22 +283,6 @@ function AddRole() {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="flex-end" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              sx={{
-                color: theme.palette.common.white,
-                width: "max-content",
-                backgroundColor: theme.palette.error.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.error.main,
-                },
-              }}
-              onClick={() => navigate("/roles")}
-            >
-              Cancel
-            </Button>
-          </Grid>
           <Grid item>
             <Button
               fullWidth

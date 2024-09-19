@@ -18,6 +18,7 @@ import {
 } from "../../../helpers/notificationService";
 import { languageSchema, validateSchema } from "../../../validation/validationSchema";
 import { useNavigate } from "react-router-dom";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function AddLanguage() {
   const theme = useTheme();
@@ -61,6 +62,9 @@ function AddLanguage() {
 
   return (
     <Grid container spacing={2} display="flex" justifyContent="end">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -70,20 +74,20 @@ function AddLanguage() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextInput
-                  name={"lang_name"}
+                  name={"lang_name*"}
                   defaultValue={formData?.lang_name}
                   startEdit={true}
                   error={errors?.lang_name?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange("lang_name", value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextInput
-                  name={"lang_code"}
+                  name={"lang_code*"}
                   defaultValue={formData?.lang_code}
                   error={errors?.lang_code?.message}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange("lang_code", value)}
                 />
               </Grid>
             </Grid>
@@ -92,22 +96,6 @@ function AddLanguage() {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="flex-end" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              sx={{
-                color: theme.palette.common.white,
-                width: "max-content",
-                backgroundColor: theme.palette.error.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.error.main,
-                },
-              }}
-              onClick={() => navigate("/languages")}
-            >
-              Cancel
-            </Button>
-          </Grid>
           <Grid item>
             <Button
               fullWidth

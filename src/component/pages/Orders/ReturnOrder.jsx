@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Box, Button, Card, CardContent, Grid, Typography, useTheme } from '@mui/material';
 import { returnOrderSchema, validateSchema } from '../../../validation/validationSchema';
 import TextInput from '../../Form/TextInput';
+import BackNavigate from '../../Basic/BackNavigate';
 
 
 function ReturnOrder() {
@@ -128,6 +129,11 @@ function ReturnOrder() {
 
     return (
         <Grid container spacing={2} alignItems="stretch" justifyContent="end">
+            <Grid item xs={12} >
+                <Grid item xs={12} >
+                    <BackNavigate />
+                </Grid>
+            </Grid>
             <Grid item xs={12} md={6}>
                 <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <CardContent style={{ flex: 1 }}>
@@ -239,20 +245,6 @@ function ReturnOrder() {
                         gap: "1rem",
                     }}
                 >
-                    <Button
-                        variant="contained"
-                        sx={{
-                            color: theme.palette.common.white,
-                            width: "max-content",
-                            backgroundColor: theme.palette.error.main,
-                            "&:hover": {
-                                backgroundColor: theme.palette.error.main,
-                            },
-                        }}
-                        onClick={() => navigate("/orders")}
-                    >
-                        Cancel
-                    </Button>
                     <Button
                         variant="contained"
 

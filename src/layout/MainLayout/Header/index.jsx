@@ -13,11 +13,13 @@ import { drawerWidth } from '../../../config/config.js';
 // assets
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import logo from '../../../assets/images/1.png';
+import { useNavigate } from 'react-router-dom';
 
 // ==============================|| HEADER ||============================== //
 
 const Header = ({ drawerToggle }) => {
   const theme = useTheme();
+  const navigate = useNavigate()
 
   return (
     <>
@@ -26,7 +28,10 @@ const Header = ({ drawerToggle }) => {
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <Grid item>
               <Box mt={0.5}>
-                <img src={logo} alt="Logo" width="138" height="32" />
+                <img src={logo} alt="Logo" width="138" height="32"
+                  style={{ cursor: 'pointer' }} onClick={() => {
+                    navigate("/")
+                  }} />
               </Box>
             </Grid>
           </Box>

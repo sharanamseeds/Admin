@@ -15,6 +15,7 @@ import {
 } from "../../../helpers/notificationService";
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
+import BackNavigate from "../../Basic/BackNavigate";
 
 
 function EditRole() {
@@ -177,12 +178,11 @@ function EditRole() {
   }, [id]);
 
 
-  useEffect(() => {
-    console.log(permissions)
-  }, [permissions])
-
   return (
     <Grid container spacing={2} >
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="flex-start" spacing={2}>
           <Grid item xs={12} md={4}>
@@ -314,20 +314,6 @@ function EditRole() {
             gap: "1rem",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.error.main,
-              "&:hover": {
-                backgroundColor: theme.palette.error.main,
-              },
-            }}
-            onClick={() => navigate("/roles")}
-          >
-            Cancel
-          </Button>
           <Button
             variant="contained"
 

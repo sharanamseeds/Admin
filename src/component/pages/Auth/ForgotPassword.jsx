@@ -17,6 +17,7 @@ import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificationService";
 import { useDispatch } from "react-redux";
 import InputError from "../../Basic/InputError";
+import { clearLocalStorage } from "../../../helpers";
 
 const ForgotPassword = () => {
   const theme = useTheme();
@@ -165,7 +166,8 @@ const ForgotPassword = () => {
       if (response.data?.payload) {
         showSuccessMessage(response.data?.message);
         if (response.data?.payload?.status) {
-          navigate('/authentication/login')
+          clearLocalStorage()
+          navigate(AxiosInstancePaths.login_path)
         }
       }
       dispatch(stopLoading());

@@ -21,6 +21,7 @@ import {
   updateLanguageSchema,
   validateSchema,
 } from "../../../validation/validationSchema";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function EditLanguage() {
   const theme = useTheme();
@@ -67,7 +68,6 @@ function EditLanguage() {
       if (response.data?.payload) {
         setLanguage(response.data?.payload?.result);
         setFormData({
-          lang_code: response.data?.payload?.result?.lang_code,
           lang_name: response.data?.payload?.result?.lang_name,
         });
       }
@@ -107,6 +107,9 @@ function EditLanguage() {
 
   return (
     <Grid container spacing={2} display="flex" justifyContent="end">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -116,11 +119,11 @@ function EditLanguage() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextInput
-                  name={"lang_name"}
+                  name={"lang_name*"}
                   defaultValue={language?.lang_name}
                   error={errors?.lang_name?.message}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange("lang_name", value)}
                 />
               </Grid>
             </Grid>
@@ -129,22 +132,6 @@ function EditLanguage() {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="flex-end" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              sx={{
-                color: theme.palette.common.white,
-                width: "max-content",
-                backgroundColor: theme.palette.error.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.error.main,
-                },
-              }}
-              onClick={() => navigate("/languages")}
-            >
-              Cancel
-            </Button>
-          </Grid>
           <Grid item>
             <Button
               fullWidth

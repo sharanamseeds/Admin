@@ -12,6 +12,7 @@ import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificat
 import { UserSchema, validateSchema } from "../../../validation/validationSchema";
 import { useNavigate } from "react-router-dom";
 import ImageWithPreview from "../../Basic/ImagePreview";
+import BackNavigate from "../../Basic/BackNavigate";
 
 function AddUser() {
   const theme = useTheme();
@@ -105,6 +106,9 @@ function AddUser() {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -352,26 +356,7 @@ function AddUser() {
         </Card>
       </Grid>
       <Grid item xs={12} display="flex" gap={"1rem"} justifyContent="end">
-        <Button
-          variant="contained"
-          disabled={isLoading}
-          sx={{
-            color: theme.palette.common.white,
-            width: "max-content",
-            backgroundColor: theme.palette.error.main,
-            "&:hover": {
-              backgroundColor: theme.palette.error.main,
-            },
-            "&.Mui-disabled": {
-              backgroundColor: theme.palette.error.main,
-              color: theme.palette.common.white,
-              opacity: 1,  // Ensures the color remains fully opaque
-            },
-          }}
-          onClick={() => navigate("/users")}
-        >
-          Cancel
-        </Button>
+
         <Button
           fullWidth
           variant="contained"

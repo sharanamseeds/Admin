@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import SelectInput from "../../../Form/SelectInput";
 import ImageWithPreview from "../../../Basic/ImagePreview";
 import { useTheme } from "@mui/material";
+import BackNavigate from "../../../Basic/BackNavigate";
 
 
 function AddBrand() {
@@ -96,6 +97,9 @@ function AddBrand() {
 
   return (
     <Grid container spacing={2} alignItems="stretch" style={{ display: 'flex', justifyContent: 'end' }}>
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -154,20 +158,6 @@ function AddBrand() {
       </Grid>
 
       <Grid item xs={12} display="flex" gap={"1rem"} justifyContent="end">
-        <Button
-          variant="contained"
-          sx={{
-            color: theme.palette.common.white,
-            width: "max-content",
-            backgroundColor: theme.palette.error.main,
-            "&:hover": {
-              backgroundColor: theme.palette.error.main,
-            },
-          }}
-          onClick={() => navigate("/brands")}
-        >
-          Cancel
-        </Button>
         <Button
           fullWidth
           variant="contained"

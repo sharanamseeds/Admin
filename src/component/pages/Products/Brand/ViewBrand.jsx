@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Button, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import FilledInput from "../../../Basic/FilledInput";
 import axiosInstance from "../../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../../config/AxiosInstancePaths";
@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import SelectInput from "../../../Form/SelectInput";
 import { createGeneralOptions } from "../../../../helpers";
 import ImageWithPreview from "../../../Basic/ImagePreview";
-import { useTheme } from "@mui/material";
+import BackNavigate from "../../../Basic/BackNavigate";
 
 
 function ViewBrand() {
@@ -19,7 +19,6 @@ function ViewBrand() {
   const dispatch = useDispatch();
   const [langCode, setLangCode] = useState("")
   const [languages, setLanguages] = useState([]);
-  const theme = useTheme();
   const fetBrandData = async () => {
     try {
       dispatch(startLoading());
@@ -70,6 +69,9 @@ function ViewBrand() {
 
   return (
     <Grid container spacing={2} alignItems="stretch" style={{ display: 'flex', justifyContent: 'end' }}>
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -104,26 +106,6 @@ function ViewBrand() {
             </Grid>
           </CardContent>
         </Card>
-      </Grid>
-
-      {/* Back Button */}
-      <Grid item xs={12}>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="contained"
-            sx={{
-              color: theme.palette.common.white,
-              width: "max-content",
-              backgroundColor: theme.palette.warning.main,
-              "&:hover": {
-                backgroundColor: theme.palette.warning.main,
-              },
-            }}
-            onClick={() => window.history.back()}
-          >
-            Back
-          </Button>
-        </Box>
       </Grid>
     </Grid>
   );

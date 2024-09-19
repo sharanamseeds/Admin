@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Grid, Typography, useTheme } from '@mui/material'
+import { Card, CardContent, Grid, Typography, } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -7,11 +7,11 @@ import { startLoading, stopLoading } from '../../../redux/slices/loadingSlice';
 import { showErrorMessage } from '../../../helpers/notificationService';
 import axiosInstance from '../../../config/AxiosConfig';
 import AxiosInstancePaths from '../../../config/AxiosInstancePaths';
+import BackNavigate from '../../Basic/BackNavigate';
 
 function ViewLedger() {
     const [ledger, setLedger] = useState();
     const { id } = useParams();
-    const theme = useTheme();
     const dispatch = useDispatch();
 
     const fetchLedgerData = async () => {
@@ -39,6 +39,11 @@ function ViewLedger() {
 
     return (
         <Grid container spacing={2} alignItems="stretch" justifyContent={'end'}>
+            <Grid item xs={12} >
+                <Grid item xs={12} >
+                    <BackNavigate />
+                </Grid>
+            </Grid>
             <Grid item xs={12} md={6}>
                 <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <CardContent style={{ flex: 1 }}>
@@ -62,26 +67,6 @@ function ViewLedger() {
                         </Grid>
                     </CardContent>
                 </Card>
-            </Grid>
-
-            {/* Back Button */}
-            <Grid item xs={12}>
-                <Box sx={{ display: "flex", justifyContent: "flex-end", gap: '1rem' }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            color: theme.palette.common.white,
-                            width: "max-content",
-                            backgroundColor: theme.palette.warning.main,
-                            "&:hover": {
-                                backgroundColor: theme.palette.warning.main,
-                            },
-                        }}
-                        onClick={() => window.history.back()}
-                    >
-                        Back
-                    </Button>
-                </Box>
             </Grid>
         </Grid>
     )

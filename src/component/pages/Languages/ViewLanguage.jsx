@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
-  Button,
   Grid,
   Card,
   CardContent,
   Typography,
-  useTheme,
 } from "@mui/material";
 import FilledInput from "../../Basic/FilledInput";
 import axiosInstance from "../../../config/AxiosConfig";
@@ -14,14 +12,13 @@ import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../../redux/slices/loadingSlice";
 import { showErrorMessage } from "../../../helpers/notificationService";
+import BackNavigate from "../../Basic/BackNavigate";
 
 
 function ViewLanguage() {
-  const theme = useTheme();
   const { id } = useParams();
   const [language, setLanguage] = useState();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const fetchLanguageData = async () => {
     try {
       dispatch(startLoading());
@@ -46,6 +43,9 @@ function ViewLanguage() {
 
   return (
     <Grid container spacing={2} display="flex" justifyContent="end">
+      <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+        <BackNavigate />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
@@ -70,26 +70,6 @@ function ViewLanguage() {
             </Grid>
           </CardContent>
         </Card>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container justifyContent="flex-end" spacing={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              sx={{
-                color: theme.palette.common.white,
-                width: "max-content",
-                backgroundColor: theme.palette.warning.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.warning.main,
-                },
-              }}
-              onClick={() => navigate("/languages")}
-            >
-              Back
-            </Button>
-          </Grid>
-        </Grid>
       </Grid>
     </Grid>
   );

@@ -1,15 +1,13 @@
 import React from 'react';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Fade, Button, ClickAwayListener, Paper, Popper, List, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
-
-
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import MeetingRoomTwoToneIcon from '@mui/icons-material/MeetingRoomTwoTone';
 import { clearLocalStorage } from '../../../../helpers';
 import { useNavigate } from 'react-router-dom';
 import AxiosInstancePaths from '../../../../config/AxiosInstancePaths';
+import { AppConfig } from '../../../../config/AppConfig';
 
 // ==============================|| PROFILE SECTION ||============================== //
 
@@ -19,6 +17,10 @@ const ProfileSection = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  let user = localStorage.getItem(AppConfig.localStorageKeys.user);
+  if (user) {
+    user = JSON.parse(user)
+  }
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -101,6 +103,18 @@ const ProfileSection = () => {
                 >
                   <ListItemButton selected={selectedIndex === 0}>
                     <ListItemIcon>
+                      <AccountBoxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Profile"
+                      onClick={(event) => {
+                        handleListItemClick(event, 0)
+                        handleToggle()
+                        navigate(`/profile/view/${user?._id}`)
+                      }}
+                    />
+                  </ListItemButton>
+                  <ListItemButton selected={selectedIndex === 1}>
+                    <ListItemIcon>
                       <MeetingRoomTwoToneIcon />
                     </ListItemIcon>
                     <ListItemText primary="Logout"
@@ -110,6 +124,7 @@ const ProfileSection = () => {
                       }}
                     />
                   </ListItemButton>
+
                 </List>
               </ClickAwayListener>
             </Paper>
