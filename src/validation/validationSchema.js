@@ -195,6 +195,11 @@ export const ProductSchema = yup.object().shape({
   category_id: yup.string().required(),
   is_verified: yup.boolean(),
   is_active: yup.boolean(),
+  is_featured: yup.boolean(),
+  base_unit: yup.string().oneOf(["GM", "ML", "KG", "LTR"]).required(),
+  grn_date: yup.date().nullable(),
+  lot_no: yup.string().nullable(),   
+  vendor_name: yup.string().nullable()
 });
 
 export const UpdateProductSchema = yup.object().shape({
@@ -209,6 +214,11 @@ export const UpdateProductSchema = yup.object().shape({
   category_id: yup.string(),
   is_verified: yup.boolean(),
   is_active: yup.boolean(),
+  is_featured: yup.boolean(),
+  base_unit: yup.string().oneOf(["GM", "ML", "KG", "LTR"]),
+  grn_date: yup.date().nullable(),  
+  lot_no: yup.string().nullable(),   
+  vendor_name: yup.string().nullable()
 });
 
 export const BrandSchema = yup.object().shape({

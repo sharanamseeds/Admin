@@ -205,13 +205,13 @@ function ViewProduct() {
               <Grid item xs={12} md={4}>
                 <FilledInput
                   label={"manufacture_date"}
-                  value={formatDate(new Date(product?.manufacture_date))}
+                  value={product?.manufacture_date ? formatDate(new Date(product?.manufacture_date)) : ""}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
                 <FilledInput
                   label={"expiry_date"}
-                  value={formatDate(new Date(product?.expiry_date))}
+                  value={product?.expiry_date ? formatDate(new Date(product?.expiry_date)) : ''}
                 />
               </Grid>
             </Grid>
@@ -254,11 +254,57 @@ function ViewProduct() {
                   isDisabel={true}
                 />
               </Grid>
+
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <SwitchInput
+                  name="Featured Product"
+                  startEdit={true}
+                  defaultValue={product?.is_featured}
+                  isDisabel={true}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  label={"base_unit"}
+                  value={product?.base_unit}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  label={"std_qty"}
+                  value={product?.std_qty}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  label={"GRN_date"}
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  value={product?.grn_date ? formatDate(new Date(product?.grn_date)) : ""}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  label={"lot_no"}
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  value={product?.lot_no}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  label={"vendor_name"}
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  value={product?.vendor_name}
+                />
+              </Grid>
+
+
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
                   name="language"
                   startEdit={true}
-                  seperatedLabel={true}
+                  seperatedLabel={false}
                   defaultValue={langCode}
                   options={createGeneralOptions(languages, "lang_name", "lang_code")}
                   handleChange={(name, value) => setLangCode(value)}

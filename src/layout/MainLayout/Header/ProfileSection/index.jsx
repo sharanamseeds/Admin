@@ -14,7 +14,7 @@ import { AppConfig } from '../../../../config/AppConfig';
 const ProfileSection = () => {
   const theme = useTheme();
   const navigate = useNavigate()
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  // const [selectedIndex, setSelectedIndex] = React.useState(1);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   let user = localStorage.getItem(AppConfig.localStorageKeys.user);
@@ -22,9 +22,9 @@ const ProfileSection = () => {
     user = JSON.parse(user)
   }
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
+  // const handleListItemClick = (event, index) => {
+  //   setSelectedIndex(index);
+  // };
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -101,25 +101,25 @@ const ProfileSection = () => {
                     borderRadius: '10px'
                   }}
                 >
-                  <ListItemButton selected={selectedIndex === 0}>
+                  <ListItemButton >
                     <ListItemIcon>
                       <AccountBoxIcon />
                     </ListItemIcon>
                     <ListItemText primary="Profile"
                       onClick={(event) => {
-                        handleListItemClick(event, 0)
+                        // handleListItemClick(event, 0)
                         handleToggle()
                         navigate(`/profile/view/${user?._id}`)
                       }}
                     />
                   </ListItemButton>
-                  <ListItemButton selected={selectedIndex === 1}>
+                  <ListItemButton >
                     <ListItemIcon>
                       <MeetingRoomTwoToneIcon />
                     </ListItemIcon>
                     <ListItemText primary="Logout"
                       onClick={(event) => {
-                        handleListItemClick(event, 1)
+                        // handleListItemClick(event, 1)
                         logOut()
                       }}
                     />

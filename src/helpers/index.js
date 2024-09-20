@@ -154,3 +154,29 @@ export const snakeToTitleCase = (snakeCaseStr) => {
 
   return titleCaseStr;
 };
+
+export const calculateStandardQty = (base_unit, quantity) => {
+  let std_qty = "";
+  quantity = parseFloat(quantity);
+
+  if (isNaN(quantity)) {
+    return "";
+  }
+  switch (base_unit) {
+    case "GM":
+      std_qty = (quantity / 1000).toFixed(2) + " KG";
+      break;
+    case "ML":
+      std_qty = (quantity / 1000).toFixed(2) + " LTR";
+      break;
+    case "KG":
+      std_qty = quantity.toFixed(2) + " KG";
+      break;
+    case "LTR":
+      std_qty = quantity.toFixed(2) + " LTR";
+      break;
+    default:
+      std_qty = quantity.toString();
+  }
+  return std_qty;
+};

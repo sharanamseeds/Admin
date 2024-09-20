@@ -4,7 +4,7 @@ import TextInput from "../../../Form/TextInput";
 import FileUpload from "../../../Form/FileUpload";
 import SelectInput from "../../../Form/SelectInput";
 import SwitchInput from "../../../Form/SwitchInput";
-import { createGeneralOptions, createProductOptions, formatDate, objectToFormData } from "../../../../helpers";
+import { calculateStandardQty, createGeneralOptions, createProductOptions, formatDate, objectToFormData } from "../../../../helpers";
 import Editor from "../../../Form/Editor";
 import { useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice";
@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 import ImageWithPreview from "../../../Basic/ImagePreview";
 import BackNavigate from "../../../Basic/BackNavigate";
+import { productBaseUnitOption } from "../../../../constant/Options";
+import FilledInput from "../../../Basic/FilledInput";
 
 
 function AddProduct() {
@@ -339,11 +341,69 @@ function AddProduct() {
                   handleChange={(name, value) => handleSelectChange('is_verified', value)}
                 />
               </Grid>
-              <Grid item xs={12} md={12}>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <SwitchInput
+                  name="Featured Product"
+                  startEdit={true}
+                  error={errors?.is_featured?.message}
+                  handleChange={(name, value) => handleSelectChange('is_featured', value)}
+                  defaultValue={formData?.is_featured}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <SelectInput
+                  name="base_unit"
+                  startEdit={true}
+                  seperatedLabel={false}
+                  defaultValue={formData?.base_unit}
+                  options={productBaseUnitOption}
+                  handleChange={(name, value) => handleSelectChange('base_unit', value)}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <FilledInput
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  label={"std_qty"}
+                  value={formData?.base_unit && formData?.quantity ? calculateStandardQty(formData?.base_unit, formData?.quantity) : "-"}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <TextInput
+                  type="date"
+                  name={"GRN_date"}
+                  error={errors?.grn_date?.message}
+                  seperatedLabel={true}
+                  startEdit={true}
+                  defaultValue={formatDate(new Date(formData?.grn_date))}
+                  handleChange={(name, value) => { handleSelectChange("grn_date", new Date(value)) }}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <TextInput
+                  name={"lot_no"}
+                  error={errors?.lot_no?.message}
+                  seperatedLabel={true}
+                  startEdit={true}
+                  handleChange={handleSelectChange}
+                  defaultValue={formData?.lot_no}
+
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
+                <TextInput
+                  name={"vendor_name"}
+                  error={errors?.vendor_name?.message}
+                  seperatedLabel={true}
+                  startEdit={true}
+                  handleChange={handleSelectChange}
+                  defaultValue={formData?.vendor_name}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
                   name="language"
                   startEdit={true}
-                  seperatedLabel={true}
+                  seperatedLabel={false}
                   defaultValue={langCode}
                   options={createGeneralOptions(languages, "lang_name", "lang_code")}
                   handleChange={(name, value) => setLangCode(value)}

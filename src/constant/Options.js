@@ -59,6 +59,13 @@ export const paymentMethodsOption = [
   { label: "Online", value: "online" },
 ];
 
+export const productBaseUnitOption = [
+  { label: "GM", value: "GM" },
+  { label: "ML", value: "ML" },
+  { label: "KG", value: "KG" },
+  { label: "LTR", value: "LTR" },
+];
+
 export const offerType = [
   { label: "Percentage", value: "percentage" },
   { label: "Fixed Amount", value: "fixed_amount" },
