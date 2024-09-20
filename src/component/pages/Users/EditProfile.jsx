@@ -542,7 +542,6 @@ function EditUser() {
               </div>
             </Grid>
           </Grid>
-
         </Box>
       </Grid>
 

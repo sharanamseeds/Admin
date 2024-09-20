@@ -65,6 +65,8 @@ const AddLanguage = Loadable(lazy(() => import("../component/pages/Languages/Add
 const EditProfile = Loadable(lazy(() => import("../component/pages/Users/EditProfile")));
 const ViewProfile = Loadable(lazy(() => import("../component/pages/Users/ViewProfile")));
 
+const AppBanners = Loadable(lazy(() => import("../component/pages/AppBanners")));
+
 const MainRoutes = () => {
   const permissions = usePermissions();
   const dispatch = useDispatch();
@@ -554,6 +556,23 @@ const MainRoutes = () => {
                 permissionType="can_read"
               >
                 <ViewLedger permission={permissions?.find(item => item.module_name === "Ledger")} />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/banners',
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '', element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="App Banner"
+                permissionType="can_read"
+              >
+                <AppBanners />
               </ProtectedRoute>
             ),
           },

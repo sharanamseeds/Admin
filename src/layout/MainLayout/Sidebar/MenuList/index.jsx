@@ -23,13 +23,16 @@ import {
   FaUserPlus,
   FaTools,
   FaIcons,
-  FaRegLifeRing, FaQuestion
+  FaRegLifeRing,
+  FaQuestion,
+  FaBullhorn
 } from 'react-icons/fa';
 import { GiBlockHouse } from 'react-icons/gi';
 import { ImBook } from "react-icons/im";
 import { hasMenuPermission } from '../../../../helpers';
 
 const icons = {
+  BannersIcon: FaBullhorn,
   NavigationOutlinedIcon: FaHome,
   HomeOutlinedIcon: FaHome,
   ChromeReaderModeOutlinedIcon: FaFileAlt,
@@ -139,6 +142,13 @@ const MenuList = ({ onMenuItemClick }) => {
           type: 'item',
           icon: icons['NotificationsIcon'],
           url: '/ledgers'
+        },
+        hasMenuPermission('App Banner', 'can_read', permissions) && {
+          id: 'banners',
+          title: 'App Banners',
+          type: 'item',
+          icon: icons['BannersIcon'],
+          url: '/banners'
         },
       ]
     },

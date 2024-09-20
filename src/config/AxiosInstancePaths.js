@@ -1,7 +1,7 @@
 const AxiosInstancePaths = {
   login_path: "/authentication/login",
   refresh_token_url: "auth/refresh_token",
-  // base_url: "http://localhost:8080/api/",
+  // base_url: "https://localhost:8080/api/",
   base_url: "https://sharanamagritech.com:8080/api/",
   Auth: {
     LOGIN: "auth/login",
@@ -106,6 +106,11 @@ const AxiosInstancePaths = {
     DELETE_BY_ID: "users/",
     GET_ACCOUNT: "users/get_account_details",
     DOWNLOAD_EXCEL: "users/download-excel",
+  },
+  AppBanner: {
+    GET_BANNER: "banners",
+    UPDATE_BANNER_BY_ID: "banners/",
+    DELETE_BANNER_IMAGE_BY_ID: "banners/delete_image/",
   },
   Documents: {
     Delete: {

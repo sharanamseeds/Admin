@@ -98,7 +98,7 @@ function ProductList({ permission }) {
   };
 
   const handleFilter = (name, value) => {
-    if (name === "product_name" || name === "product_code") {
+    if (name === "product_name" || name === "product_code" || name === "quantity" || name === "is_featured") {
       setFilter({
         sortBy: value,
         sortField: name,
@@ -241,6 +241,46 @@ function ProductList({ permission }) {
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            Quantity
+            <DropDrown
+              name="quantity"
+              icon={
+                filter?.sortField &&
+                  filter.sortField === "quantity" &&
+                  filter.sortBy !== "asc" ? (
+                  <BsSortAlphaDownAlt color={theme.palette.common.black} size={15} />
+                ) : (
+                  <BsSortAlphaDown color={theme.palette.common.black} size={15} />
+                )
+              }
+              onSelect={handleFilter}
+              options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "quantity" ?
+                filter.sortBy : ""}
+            />
+          </div>
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            Featured
+            <DropDrown
+              name="is_featured"
+              icon={
+                filter?.sortField &&
+                  filter.sortField === "is_featured" &&
+                  filter.sortBy !== "asc" ? (
+                  <BsSortAlphaDownAlt color={theme.palette.common.black} size={15} />
+                ) : (
+                  <BsSortAlphaDown color={theme.palette.common.black} size={15} />
+                )
+              }
+              onSelect={handleFilter}
+              options={nameFilter}
+              value={filter?.sortField &&
+                filter.sortField === "is_featured" ?
+                filter.sortBy : ""}
+            />
+          </div>
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
             Action
           </div>
         </div>
@@ -266,6 +306,12 @@ function ProductList({ permission }) {
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {product.product_code}
+          </div>
+          <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
+            {product.quantity}
+          </div>
+          <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
+            {product?.is_featured ? "Featured" : 'Unfeatured'}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {permission?.can_read ? <IconButton
