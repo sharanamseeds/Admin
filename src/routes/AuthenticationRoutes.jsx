@@ -8,6 +8,8 @@ const AuthLogin = Loadable(lazy(() => import('../component/pages/Auth/Login')));
 const AuthRegister = Loadable(lazy(() => import('../component/pages/Auth/Signup')));
 const AuthForgotPassword = Loadable(lazy(() => import('../component/pages/Auth/ForgotPassword')));
 const BasicAuth = Loadable(lazy(() => import('../component/pages/Auth/BasicAuth')));
+const Privacy = Loadable(lazy(() => import('../component/pages/Basic/PrivacyPolicy')));
+const TermsAndConditions = Loadable(lazy(() => import('../component/pages/Basic/TermsAndConditions')));
 
 // ==============================|| AUTHENTICATION ROUTES ||============================== //
 
@@ -26,6 +28,14 @@ const AuthenticationRoutes = {
     {
       path: '/authentication/forgot_password',
       element: <BasicAuth title="Set Password" page={<AuthForgotPassword />} />
+    },
+    {
+      path: '/privacy_policy',
+      element: <Privacy />
+    },
+    {
+      path: '/terms_and_conditions',
+      element: <TermsAndConditions />
     }
   ]
 };
