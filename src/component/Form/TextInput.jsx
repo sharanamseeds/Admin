@@ -15,6 +15,7 @@ function TextInput({
   name,
   error = null,
   defaultValue = "",
+  isDate = false,
   handleChange = (name, value) => console.log(name, value),
   ...otherProps
 }) {
@@ -53,6 +54,8 @@ function TextInput({
             borderRadius: "5px",
             border: "none",
             width: "100%",
+            textAlign: seperatedLabel && isDate ? "end" : "start",
+            paddingRight: seperatedLabel && isDate ? "10px" : "0px"
           }}
         >
           {snakeToTitleCase(name)}
