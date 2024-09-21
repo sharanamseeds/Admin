@@ -60,7 +60,7 @@ function AddProduct() {
 
   const addProduct = async () => {
     try {
-      console.log(formData, 'formData')
+
       const isValid = await validateSchema(ProductSchema, formData, setErrors);
       if (!isValid) {
         return;
@@ -192,25 +192,25 @@ function AddProduct() {
             <Grid container spacing={2}>
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <TextInput
-                  name={"product_name"}
+                  name={"product_name*"}
                   error={errors?.product_name?.message}
                   seperatedLabel={true}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('product_name', value)}
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <TextInput
-                  name={"product_code"}
+                  name={"product_code*"}
                   error={errors?.product_code?.message}
                   seperatedLabel={true}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('product_code', value)}
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <SelectInput
-                  name="Brand"
+                  name="Brand*"
                   startEdit={true}
                   error={errors?.brand_id?.message}
                   seperatedLabel={false}
@@ -220,7 +220,7 @@ function AddProduct() {
               </Grid>
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <SelectInput
-                  name="Category"
+                  name="Category*"
                   error={errors?.category_id?.message}
                   startEdit={true}
                   seperatedLabel={false}
@@ -231,53 +231,53 @@ function AddProduct() {
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <TextInput
                   type="number"
-                  name={"gst_percent"}
+                  name={"gst_percent*"}
                   error={errors?.gst_percent?.message}
                   seperatedLabel={true}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('gst_percent', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="number"
-                  name={"price"}
+                  name={"price*"}
                   error={errors?.price?.message}
                   seperatedLabel={true}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('price', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="number"
-                  name={"quantity"}
+                  name={"quantity*"}
                   error={errors?.quantity?.message}
                   seperatedLabel={true}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('quantity', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="date"
-                  name={"manufacture_date"}
+                  name={"manufacture_date*"}
                   error={errors?.manufacture_date?.message}
                   seperatedLabel={true}
                   startEdit={true}
                   defaultValue={formatDate(new Date(formData?.manufacture_date))}
-                  handleChange={(name, value) => { handleSelectChange(name, new Date(value)) }}
+                  handleChange={(name, value) => { handleSelectChange("manufacture_date", new Date(value)) }}
                 />
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="date"
-                  name={"expiry_date"}
+                  name={"expiry_date*"}
                   error={errors?.expiry_date?.message}
                   seperatedLabel={true}
                   startEdit={true}
                   defaultValue={formatDate(new Date(formData?.expiry_date))}
-                  handleChange={(name, value) => { handleSelectChange(name, new Date(value)) }}
+                  handleChange={(name, value) => { handleSelectChange("expiry_date", new Date(value)) }}
                 />
               </Grid>
             </Grid>
@@ -300,19 +300,19 @@ function AddProduct() {
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <FileUpload
-                  inputName="logo"
+                  inputName="logo*"
                   defaultFiles={formData.logo}
                   error={errors?.logo?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('logo', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <FileUpload
-                  inputName="images"
+                  inputName="images*"
                   defaultFiles={formData.images}
                   error={errors?.images?.message}
                   multiple={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('images', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
@@ -337,7 +337,7 @@ function AddProduct() {
                 <SwitchInput
                   name="Verification Status"
                   startEdit={true}
-                  error={errors?.is_active?.message}
+                  error={errors?.is_verified?.message}
                   handleChange={(name, value) => handleSelectChange('is_verified', value)}
                 />
               </Grid>
@@ -352,8 +352,9 @@ function AddProduct() {
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
-                  name="base_unit"
+                  name="base_unit*"
                   startEdit={true}
+                  error={errors?.base_unit?.message}
                   seperatedLabel={false}
                   defaultValue={formData?.base_unit}
                   options={productBaseUnitOption}
@@ -441,13 +442,13 @@ function AddProduct() {
         <Card>
           <CardContent>
             <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }}>
-              Description
+              Description*
             </Typography>
             <Editor
-              name={"description"}
+              name={"description*"}
               error={errors?.description?.message}
               defaultValue={formData?.description || ""}
-              handleChange={handleSelectChange}
+              handleChange={(name, value) => handleSelectChange('description', value)}
             />
           </CardContent>
         </Card>

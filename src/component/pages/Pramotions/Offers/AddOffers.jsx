@@ -370,29 +370,29 @@ function AddOffers() {
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
-                  name="offer_type"
+                  name="offer_type*"
                   startEdit={true}
                   error={errors?.offer_type?.message}
                   seperatedLabel={true}
                   defaultValue={formData?.offer_type}
                   options={offerType}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('offer_type', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
-                  name={"offer_name"}
+                  name={"offer_name*"}
                   error={errors?.offer_name?.message}
                   startEdit={true}
                   defaultValue={formData?.offer_name}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('offer_name', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
-                  name={"offer_code"}
+                  name={"offer_code*"}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('offer_code', value)}
                   defaultValue={formData?.offer_code}
                   error={errors?.offer_code?.message}
                 />
@@ -481,103 +481,106 @@ function AddOffers() {
               {formData?.offer_type && formData.offer_type === "percentage" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"percentage_discount"}
+                    name={"percentage_discount*"}
                     type="number"
                     defaultValue={formData?.percentage_discount}
                     error={errors?.percentage_discount?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('percentage_discount', value)}
                   />
                 </Grid> : ''}
 
               {formData?.offer_type && formData.offer_type === "fixed_amount" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"fixed_amount_discount"}
+                    name={"fixed_amount_discount*"}
                     type="number"
                     defaultValue={formData?.fixed_amount_discount}
                     error={errors?.fixed_amount_discount?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('fixed_amount_discount', value)}
+
                   />
                 </Grid> : ''}
 
               {formData?.offer_type && formData.offer_type === "buy_x_get_y" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"buy_quantity"}
+                    name={"buy_quantity*"}
                     type="number"
                     defaultValue={formData?.buy_quantity}
                     error={errors?.buy_quantity?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('buy_quantity', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "buy_x_get_y" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"get_quantity"}
+                    name={"get_quantity*"}
                     type="number"
                     defaultValue={formData?.get_quantity}
                     error={errors?.get_quantity?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('get_quantity', value)}
                   />
                 </Grid> : ''}
 
               {formData?.offer_type && formData.offer_type === "referral" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"referral_code"}
+                    name={"referral_code*"}
                     defaultValue={formData?.referral_code}
                     error={errors?.referral_code?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+
+                    handleChange={(name, value) => handleSelectChange('referral_code', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "referral" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"referral_amount"}
+                    name={"referral_amount*"}
                     type="number"
                     defaultValue={formData?.referral_amount}
                     error={errors?.referral_amount?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+
+                    handleChange={(name, value) => handleSelectChange('referral_amount', value)}
                   />
                 </Grid> : ''}
 
               {formData?.offer_type && formData.offer_type === "coupon" ?
                 <Grid item xs={12}>
                   <TextInput
-                    name={"coupon_code"}
+                    name={"coupon_code*"}
                     defaultValue={formData?.coupon_code}
                     error={errors?.coupon_code?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('coupon_code', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "coupon" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <SelectInput
-                    name="coupon_details.coupon_type"
+                    name="coupon_type*"
                     startEdit={true}
                     error={errors?.coupon_details?.coupon_type?.message}
                     seperatedLabel={true}
                     defaultValue={formData?.coupon_details?.coupon_type}
                     options={couponType}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('coupon_details.coupon_type', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "coupon" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"coupon_details.value"}
+                    name={"value*"}
                     type="number"
                     defaultValue={formData?.coupon_details?.value}
                     error={errors?.coupon_details?.value?.message}
                     startEdit={true}
-                    handleChange={handleSelectChange}
+                    handleChange={(name, value) => handleSelectChange('coupon_details.value', value)}
                   />
                 </Grid> : ''}
 
@@ -586,23 +589,25 @@ function AddOffers() {
               {formData?.offer_type && formData.offer_type === "tiered" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"min_order_value"}
+                    name={"min_order_value*"}
                     type="number"
                     defaultValue={tierData?.min_order_value}
                     error={errors?.min_order_value?.message}
                     startEdit={true}
-                    handleChange={handleTierChange}
+
+                    handleChange={(name, value) => handleTierChange('min_order_value', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "tiered" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"discount"}
+                    name={"discount*"}
                     type="number"
                     defaultValue={tierData?.discount}
                     error={errors?.discount?.message}
                     startEdit={true}
-                    handleChange={handleTierChange}
+
+                    handleChange={(name, value) => handleTierChange('discount', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "tiered" ?
@@ -628,35 +633,38 @@ function AddOffers() {
               {formData?.offer_type && formData.offer_type === "bundle" ?
                 <Grid item xs={12}>
                   <SelectInput
-                    name="product_id"
+                    name="product_id*"
                     startEdit={true}
                     error={errors?.product_id?.message}
                     seperatedLabel={false}
                     options={createProductOptions(products, "product_name")}
-                    handleChange={handleBundleChange}
+
                     defaultValue={bundleData?.product_id}
+                    handleChange={(name, value) => handleBundleChange('product_id', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "bundle" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"quantity"}
+                    name={"quantity*"}
                     type="number"
                     defaultValue={bundleData?.quantity}
                     error={errors?.quantity?.message}
                     startEdit={true}
-                    handleChange={handleBundleChange}
+
+                    handleChange={(name, value) => handleBundleChange('quantity', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "bundle" ?
                 <Grid item xs={12} md={6} lg={6} sm={12}>
                   <TextInput
-                    name={"price"}
+                    name={"price*"}
                     type="number"
                     defaultValue={bundleData?.price}
                     error={errors?.price?.message}
                     startEdit={true}
-                    handleChange={handleBundleChange}
+
+                    handleChange={(name, value) => handleBundleChange('price', value)}
                   />
                 </Grid> : ''}
               {formData?.offer_type && formData.offer_type === "bundle" ?
@@ -851,7 +859,7 @@ function AddOffers() {
         <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: 1 }}>
             <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }}>
-              Description
+              Description*
             </Typography>
             <Editor
               name={"description"}

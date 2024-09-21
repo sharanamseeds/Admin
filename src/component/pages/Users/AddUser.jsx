@@ -126,28 +126,28 @@ function AddUser() {
               </Grid>
               <Grid item xs={12} sm={5.8}>
                 <TextInput
-                  name={"agro_name"}
+                  name={"agro_name*"}
                   startEdit={true}
                   error={errors?.agro_name?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('agro_name', value)}
                 />
               </Grid>
               <Grid item xs={12} sm={5.8}>
                 <TextInput
-                  name={"contact_number"}
+                  name={"contact_number*"}
                   type="number"
                   startEdit={true}
                   error={errors?.contact_number?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('contact_number', value)}
                 />
               </Grid>
               <Grid item xs={12} >
                 <TextInput
-                  name={"email"}
+                  name={"email*"}
                   type="email"
                   startEdit={true}
                   error={errors?.email?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('email', value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -193,11 +193,11 @@ function AddUser() {
               </Grid>
               <Grid item xs={12} >
                 <TextInput
-                  name={"password"}
+                  name={"password*"}
                   type="password"
                   startEdit={true}
                   error={errors?.password?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('password', value)}
                 />
               </Grid>
             </Grid>

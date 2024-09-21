@@ -134,7 +134,7 @@ function AddCategory() {
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
-                <FileUpload inputName="logo" handleChange={handleSelectChange} error={errors?.logo?.message} />
+                <FileUpload inputName="logo*" handleChange={(name, value) => handleSelectChange('logo', value)} error={errors?.logo?.message} />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
@@ -148,18 +148,18 @@ function AddCategory() {
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
-                  name={"category_name"}
+                  name={"category_name*"}
                   error={errors?.category_name?.message}
                   startEdit={true}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('category_name', value)}
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12} sm={12}>
                 <Editor
-                  name={"description"}
+                  name={"description*"}
                   error={errors?.description?.message}
                   defaultValue={formData?.description || ""}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('description', value)}
                 />
               </Grid>
             </Grid>

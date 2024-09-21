@@ -14,6 +14,7 @@ import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificat
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 import BackNavigate from "../../Basic/BackNavigate";
+import InputError from "../../Basic/InputError";
 
 function AddOrders() {
   const navigate = useNavigate()
@@ -231,7 +232,7 @@ function AddOrders() {
             <Grid container spacing={2}>
               <Grid item xs={12} >
                 <SelectInput
-                  name="User"
+                  name="User*"
                   error={errors?.user_id?.message}
                   startEdit={true}
                   options={createProductOptions(users, "name")}
@@ -262,7 +263,7 @@ function AddOrders() {
             <Grid container spacing={2}>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <SelectInput
-                  name="Product"
+                  name="Product*"
                   startEdit={true}
                   defaultValue={productForm?.product_id}
                   error={errors?.product_id?.message}
@@ -272,12 +273,13 @@ function AddOrders() {
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
-                  name="quantity"
+                  name="quantity*"
                   type="number"
                   defaultValue={productForm?.quantity}
                   error={errors?.quantity?.message}
                   startEdit={true}
-                  handleChange={handleProductChange}
+
+                  handleChange={(name, value) => handleProductChange('quantity', value)}
                 />
               </Grid>
               <Grid item xs={12} >
@@ -313,6 +315,10 @@ function AddOrders() {
                   Add Product
                 </Button>
               </Grid>
+              {errors?.products?.message ? <Grid item xs={12} display="flex" gap={"1rem"} justifyContent="end">
+                <InputError message={errors?.products?.message} />
+              </Grid> : ""}
+
             </Grid>
           </CardContent>
         </Card>

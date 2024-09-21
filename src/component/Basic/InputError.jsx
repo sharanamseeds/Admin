@@ -46,7 +46,7 @@ const InputError = ({ message }) => {
 
   return (
     <div style={errorContainerStyle}>
-      {snakeToTitleCase(message)} *
+      {snakeToTitleCase(message)}
       <style>{shakeKeyframes}</style>
     </div>
   );

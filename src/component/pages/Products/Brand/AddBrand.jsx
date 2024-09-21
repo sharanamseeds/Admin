@@ -123,15 +123,15 @@ function AddBrand() {
                 justifyContent: 'end'
               }}>
                 <div style={{ width: '100%' }}>
-                  <FileUpload inputName="logo" handleChange={handleSelectChange} error={errors?.logo?.message} />
+                  <FileUpload inputName="logo*" handleChange={(name, value) => handleSelectChange('logo', value)} error={errors?.logo?.message} />
                 </div>
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextInput
-                  name={"brand_name"}
+                  name={"brand_name*"}
                   startEdit={true}
                   error={errors?.brand_name?.message}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('brand_name', value)}
                 />
               </Grid>
               {/* <Grid item xs={12} md={6}>

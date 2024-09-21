@@ -169,7 +169,7 @@ function AddRole() {
                 <Grid container justifyContent={"space-between"} >
                   <Grid item xs={12}>
                     <TextInput
-                      name={"Name"}
+                      name={"Name*"}
                       error={errors?.role_name?.message}
                       defaultValue={formData.role_name}
                       startEdit={true}
