@@ -66,7 +66,8 @@ export const LoginSchema = yup.object().shape({
 
 export const signupSchema = yup.object().shape({
   name: yup.string().required(),
-  gst_number: yup.string().length(15).required(),
+  gst_number: yup.string().length(15).optional(),
+  agro_name: yup.string().required(),
   email: yup
     .string()
     .matches(emailPattern, "Invalid Email Id")
@@ -198,8 +199,8 @@ export const ProductSchema = yup.object().shape({
   is_featured: yup.boolean(),
   base_unit: yup.string().oneOf(["GM", "ML", "KG", "LTR"]).required(),
   grn_date: yup.date().nullable(),
-  lot_no: yup.string().nullable(),   
-  vendor_name: yup.string().nullable()
+  lot_no: yup.string().nullable(),
+  vendor_name: yup.string().nullable(),
 });
 
 export const UpdateProductSchema = yup.object().shape({
@@ -216,9 +217,9 @@ export const UpdateProductSchema = yup.object().shape({
   is_active: yup.boolean(),
   is_featured: yup.boolean(),
   base_unit: yup.string().oneOf(["GM", "ML", "KG", "LTR"]),
-  grn_date: yup.date().nullable(),  
-  lot_no: yup.string().nullable(),   
-  vendor_name: yup.string().nullable()
+  grn_date: yup.date().nullable(),
+  lot_no: yup.string().nullable(),
+  vendor_name: yup.string().nullable(),
 });
 
 export const BrandSchema = yup.object().shape({

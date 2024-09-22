@@ -18,7 +18,7 @@ import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificationService";
 import InputError from "../../Basic/InputError";
-import { MdOutlineNumbers } from "react-icons/md";
+import { FaShop } from "react-icons/fa6";
 
 const Signup = () => {
   const theme = useTheme();
@@ -144,12 +144,12 @@ const Signup = () => {
         <TextField
           fullWidth
           className="defaultText"
-          label="Gst Number*"
+          label="Agro Name*"
           margin="normal"
           InputProps={{
             startAdornment: (
               <div style={{ display: "inline-flex", color: theme.palette.common.black, marginRight: "0.5rem" }}>
-                <MdOutlineNumbers />
+                <FaShop />
               </div>
             ),
           }}
@@ -160,16 +160,16 @@ const Signup = () => {
             ".MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
             ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: theme.palette.common.black },
           }}
-          onChange={(e) => handleSelectChange("gst_number", e.target.value)}
+          onChange={(e) => handleSelectChange("agro_name", e.target.value)}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               handleSignUp()
             }
           }}
         />
-        {errors?.gst_number?.message && (
+        {errors?.agro_name?.message && (
           <div style={{ textAlign: 'left' }}>
-            <InputError message={errors.gst_number.message} />
+            <InputError message={errors.agro_name.message} />
           </div>
         )}
         <TextField
