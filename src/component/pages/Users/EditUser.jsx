@@ -95,7 +95,7 @@ function EditUser() {
     try {
       dispatch(startLoading());
       const response = await axiosInstance.get(
-        AxiosInstancePaths.Users.GET_ACCOUNT
+        `${AxiosInstancePaths.Users.GET_ACCOUNT}?user_id=${id}`
       );
       if (response.data?.payload) {
         setAccounts(response.data?.payload?.result)
