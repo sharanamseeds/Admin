@@ -204,6 +204,7 @@ function AppBanners() {
                         <Grid container spacing={2} alignItems="stretch">
                             <Grid item xs={12} md={6} lg={5}>
                                 <FileUpload
+                                    multiple={true}
                                     inputName="images*"
                                     error={errors?.images?.message}
                                     defaultFiles={formData?.images}

@@ -10,6 +10,7 @@ import AxiosInstancePaths from '../../../config/AxiosInstancePaths';
 import ImageWithPreview from '../../Basic/ImagePreview';
 import html2pdf from 'html2pdf.js';
 import { snakeToTitleCase } from '../../../helpers';
+import BackNavigate from '../../Basic/BackNavigate';
 
 function ViewBill() {
     const [bill, setBill] = useState();
@@ -75,6 +76,9 @@ function ViewBill() {
 
     return (
         <Grid container spacing={2} alignItems="stretch" justifyContent={'end'}>
+            <Grid item xs={12} sx={{ paddingTop: { xs: '0.5rem !important', sx: '0.5rem !important', md: '0px !important' } }} >
+                <BackNavigate />
+            </Grid>
             <Grid item xs={12} >
                 <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <CardContent style={{ flex: 1 }}>
