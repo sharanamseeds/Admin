@@ -183,7 +183,7 @@ function OrdersList({ permission }) {
       <TableHeaderPart
         addText={permission?.can_add ? "Add Order" : null}
         title="Orders"
-        searchText="Search by added by, updated by, or status"
+        searchText="Search By Status"
         handleAdd={() => navigate("/orders/add")}
         handleSearch={handleSearchChange}
         isClear={true}
