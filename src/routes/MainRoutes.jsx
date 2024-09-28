@@ -1,6 +1,5 @@
 import React, { lazy, useEffect } from 'react';
 
-
 import MainLayout from '../layout/MainLayout';
 import Loadable from '../component/Loadable';
 
@@ -11,9 +10,9 @@ import { AppConfig } from '../config/AppConfig';
 import { setPermissions } from '../redux/slices/permissionSlice';
 import { useDispatch } from 'react-redux';
 
-
 const DashboardDefault = Loadable(lazy(() => import('../views/Dashboard/Default')));
 const UnauthorizedDashboard = Loadable(lazy(() => import('../views/Dashboard/UnauthorizedDashboard')));
+
 const UserList = Loadable(lazy(() => import("../component/pages/Users/UserList")));
 const AddUser = Loadable(lazy(() => import("../component/pages/Users/AddUser")));
 const EditUser = Loadable(lazy(() => import("../component/pages/Users/EditUser")));
@@ -64,6 +63,16 @@ const AddLanguage = Loadable(lazy(() => import("../component/pages/Languages/Add
 
 const EditProfile = Loadable(lazy(() => import("../component/pages/Users/EditProfile")));
 const ViewProfile = Loadable(lazy(() => import("../component/pages/Users/ViewProfile")));
+
+const VendorList = Loadable(lazy(() => import("../component/pages/Vendors/VendorList")));
+const AddVendor = Loadable(lazy(() => import("../component/pages/Vendors/AddVendor")));
+const EditVendor = Loadable(lazy(() => import("../component/pages/Vendors/EditVendor")));
+const ViewVendor = Loadable(lazy(() => import("../component/pages/Vendors/ViewVendor")));
+
+const PurchaseOrderList = Loadable(lazy(() => import("../component/pages/PurchaseOrder/PurchaseOrderList")));
+const AddPurchaseOrder = Loadable(lazy(() => import("../component/pages/PurchaseOrder/AddPurchaseOrder")));
+const EditPurchaseOrder = Loadable(lazy(() => import("../component/pages/PurchaseOrder/EditPurchaseOrder")));
+const ViewPurchaseOrder = Loadable(lazy(() => import("../component/pages/PurchaseOrder/ViewPurchaseOrder")));
 
 const AppBanners = Loadable(lazy(() => import("../component/pages/AppBanners")));
 
@@ -163,6 +172,114 @@ const MainRoutes = () => {
                 permissionType="can_add"
               >
                 <AddLanguage permission={permissions?.find(item => item.module_name === "Language")} />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/vendors',
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Vendors"
+                permissionType="can_read"
+              >
+                <VendorList permission={permissions?.find(item => item.module_name === "Vendors")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'edit/:id',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Vendors"
+                permissionType="can_update"
+              >
+                <EditVendor permission={permissions?.find(item => item.module_name === "Vendors")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'view/:id',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Vendors"
+                permissionType="can_read"
+              >
+                <ViewVendor permission={permissions?.find(item => item.module_name === "Vendors")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'add',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Vendors"
+                permissionType="can_add"
+              >
+                <AddVendor permission={permissions?.find(item => item.module_name === "Vendors")} />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/purchase_orders',
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Purchase Order"
+                permissionType="can_read"
+              >
+                <PurchaseOrderList permission={permissions?.find(item => item.module_name === "Purchase Order")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'edit/:id',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Purchase Order"
+                permissionType="can_update"
+              >
+                <EditPurchaseOrder permission={permissions?.find(item => item.module_name === "Purchase Order")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'view/:id',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Purchase Order"
+                permissionType="can_read"
+              >
+                <ViewPurchaseOrder permission={permissions?.find(item => item.module_name === "Purchase Order")} />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'add',
+            element: (
+              <ProtectedRoute
+                permissions={permissions}
+                moduleName="Purchase Order"
+                permissionType="can_add"
+              >
+                <AddPurchaseOrder permission={permissions?.find(item => item.module_name === "Purchase Order")} />
               </ProtectedRoute>
             ),
           },
@@ -628,16 +745,6 @@ const MainRoutes = () => {
           },
         ],
       },
-      // {
-      //   path: '/notifications',
-      //   element: <AuthLayout />,
-      //   children: [
-      //     { path: '', element: <NotificationsList /> },
-      //     { path: 'edit/:id', element: <EditNotifications /> },
-      //     { path: 'view/:id', element: <ViewNotifications /> },
-      //     { path: 'add', element: <AddNotifications /> },
-      //   ],
-      // },
     ]
   }
 }

@@ -8,7 +8,6 @@ import axiosInstance from '../../../config/AxiosConfig.js';
 import AxiosInstancePaths from '../../../config/AxiosInstancePaths.js';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../../helpers/index.js';
-import TextInput from '../../../component/Form/TextInput.jsx';
 import {
   FaFileInvoiceDollar,
   FaUser,
@@ -18,6 +17,9 @@ import {
   FaLanguage,
 } from 'react-icons/fa';
 import { ImBook } from "react-icons/im";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import TextInputNoLabel from '../../../component/Form/TextInputNoLabel.jsx';
+
 
 // custom style
 // const FlatCardBlock = styled((props) => <Grid item sm={6} xs={12} {...props} />)(({ theme }) => ({
@@ -117,10 +119,10 @@ const Default = () => {
 
   return (
     <Grid container spacing={2} alignItems="stretch">
-      <Grid item xs={12} >
-        <Grid container spacing={2} alignItems="stretch" justifyContent={'end'}>
-          <Grid item xs={12} md={4} sm={5} style={{ marginTop: '10px', marginLeft: '10px' }}>
-            <TextInput
+      <Grid item xs={12} style={{ display: 'flex', justifyContent: 'end' }}>
+        <Grid container spacing={2} md={5} >
+          <Grid item xs={12} md={6} >
+            <TextInputNoLabel
               type="date"
               name={"start"}
               seperatedLabel={true}
@@ -132,8 +134,8 @@ const Default = () => {
               isDate={true}
             />
           </Grid>
-          <Grid item xs={12} md={4} sm={5} style={{ marginTop: '10px', marginLeft: '10px' }}>
-            <TextInput
+          <Grid item xs={12} md={6} >
+            <TextInputNoLabel
               type="date"
               name={"End"}
               seperatedLabel={true}
@@ -141,11 +143,11 @@ const Default = () => {
               defaultValue={endDate ? formatDate(new Date(endDate)) : null}
               handleChange={(name, value) => { setEndDate(value ? new Date(value) : undefined) }}
               isDate={true}
-
             />
           </Grid>
         </Grid>
       </Grid>
+
       <Grid item xs={12} >
         <Grid container spacing={2} alignItems="stretch">
           <Grid item xs={12} sm={6} md={3} style={{ cursor: 'pointer' }} onClick={() => navigate('/languages')}>
@@ -257,6 +259,18 @@ const Default = () => {
               count={data?.bills?.total || 0}
               icon={<FaFileInvoiceDollar color={theme.palette.secondary.main} />}
               color={theme.palette.secondary.main} />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3} >
+            <CardComponent title="Account Details"
+              subItems={[
+                { name: 'Paid Sell Money', value: data?.accounts?.paid?.sellAmount || 0 },
+                { name: 'Unpaid Sell Money', value: data?.accounts?.outstandings?.sellAmount || 0 },
+                { name: 'Paid Buy Money', value: data?.accounts?.paid?.purchaseAmount || 0 },
+                { name: 'Unpaid Buy Money', value: data?.accounts?.outstandings?.purchaseAmount || 0 }
+              ]}
+              count={data?.accounts?.on_hand || 0}
+              icon={<RiMoneyRupeeCircleFill color={theme.palette.success.main} />}
+              color={theme.palette.success.main} />
           </Grid>
         </Grid>
       </Grid>

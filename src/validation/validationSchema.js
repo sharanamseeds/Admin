@@ -209,8 +209,8 @@ export const UpdateProductSchema = yup.object().shape({
   product_name: yup.string(),
   description: yup.string(),
   gst_percent: yup.number().positive(),
-  price: yup.number().positive(),
-  quantity: yup.number().positive(),
+  price: yup.number().min(1),
+  quantity: yup.number().min(0),
   brand_id: yup.string(),
   category_id: yup.string(),
   is_verified: yup.boolean(),
@@ -548,4 +548,119 @@ export const addMoneySchema = yup.object().shape({
   user_id: yup.string().required(),
   amount: yup.number().min(1).positive().required(),
   description: yup.string(),
+});
+
+export const addVendorSchema = yup.object().shape({
+  name: yup.string().required(),
+  agro_name: yup.string().required(),
+  contact_number: yup.string().length(10).required(),
+  pesticide_license_no: yup.string(),
+  seed_license_no: yup.string(),
+  fertilizer_license_no: yup.string(),
+  gst_number: yup.string().length(15),
+  pan_number: yup.string().length(10),
+  email: yup.string().email().required(),
+  address: yup
+    .object()
+    .shape({
+      address_line: yup.string(),
+      city: yup.string(),
+      state: yup.string(),
+      pincode: yup.string(),
+      coordinates: yup.array().of(yup.number()).length(2),
+    })
+    .required(),
+  bank_details: yup
+    .object()
+    .shape({
+      bankName: yup.string().required(),
+      accountNumber: yup.string().required(),
+      ifscCode: yup.string().required(),
+      branchName: yup.string().required(),
+    })
+    .required(),
+});
+
+export const updateVendorSchema = yup.object().shape({
+  name: yup.string(),
+  agro_name: yup.string(),
+  contact_number: yup.string().length(10),
+  pesticide_license_no: yup.string(),
+  seed_license_no: yup.string(),
+  fertilizer_license_no: yup.string(),
+  gst_number: yup.string().length(15),
+  pan_number: yup.string().length(10),
+  email: yup.string().email(),
+  address: yup.object().shape({
+    address_line: yup.string(),
+    city: yup.string(),
+    state: yup.string(),
+    pincode: yup.string(),
+    coordinates: yup.array().of(yup.number()).length(2),
+  }),
+  bank_details: yup.object().shape({
+    bankName: yup.string(),
+    accountNumber: yup.string(),
+    ifscCode: yup.string(),
+    branchName: yup.string(),
+  }),
+});
+
+// Product schema
+export const productSchema = yup.object().shape({
+  product_id: yup.string().required(),
+  quantity: yup.number().required(),
+  offer_discount: yup.number().default(0),
+  total_amount: yup.number().required(),
+  gst_rate: yup.number().required(),
+  purchase_price: yup.number().required(),
+  gst_amount: yup.number().required(),
+  lot_no: yup.string().required(),
+  manufacture_date: yup.date().required(),
+  expiry_date: yup.date().required(),
+});
+
+// Add Purchase Order schema
+export const addPurchaseOrderSchema = yup.object().shape({
+  vendor_id: yup.string().required(),
+  invoice_no: yup.string().required(),
+  // purchase_invoice: yup.string().nullable(), // If a file, use file validation logic
+  purchase_date: yup.date(),
+  products: yup.array().of(productSchema).required(),
+  order_amount: yup.number().required(),
+  discount_amount: yup.number().default(0),
+  billing_amount: yup.number().required(),
+  tax_amount: yup.number().required(),
+  advance_payment_amount: yup.number().default(0),
+  status: yup
+    .string()
+    .oneOf([
+      "transit",
+      "completed",
+      "due",
+      "routing_payment",
+      "advance_payment",
+    ])
+    .required(),
+  payment_status: yup.string().oneOf(["paid", "unpaid"]).required(),
+  is_creditable: yup.boolean().default(false),
+  credit_duration: yup.number().default(0),
+  order_notes: yup.string().default(""),
+});
+
+// Update Purchase Order schema
+export const updatePurchaseOrderSchema = yup.object().shape({
+  invoice_no: yup.string(),
+  purchase_date: yup.date(),
+  status: yup
+    .string()
+    .oneOf([
+      "transit",
+      "completed",
+      "due",
+      "routing_payment",
+      "advance_payment",
+    ]),
+  payment_status: yup.string().oneOf(["paid", "unpaid"]),
+  order_notes: yup.string().default(""),
 });

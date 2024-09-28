@@ -271,20 +271,6 @@ function ViewBill() {
                         sx={{
                             color: theme.palette.common.white,
                             width: "max-content",
-                            backgroundColor: theme.palette.warning.main,
-                            "&:hover": {
-                                backgroundColor: theme.palette.warning.main,
-                            },
-                        }}
-                        onClick={() => window.history.back()}
-                    >
-                        Back
-                    </Button>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            color: theme.palette.common.white,
-                            width: "max-content",
                             backgroundColor: theme.palette.success.main,
                             "&:hover": {
                                 backgroundColor: theme.palette.success.main,

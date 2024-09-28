@@ -246,7 +246,7 @@ function BrandList({ permission }) {
             <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
               {brand.brand_name}
             </div>
-            <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>{brand.tag_line}</div>
+            <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>{brand.tag_line || "-"}</div>
             <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
               {permission?.can_read ? <IconButton
                 size="small"

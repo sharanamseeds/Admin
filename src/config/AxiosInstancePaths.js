@@ -107,10 +107,28 @@ const AxiosInstancePaths = {
     GET_ACCOUNT: "users/get_account_details",
     DOWNLOAD_EXCEL: "users/download-excel",
   },
+  Vendors: {
+    GET_LIST: "vendors",
+    ADD: "vendors/",
+    GET_BY_ID: "vendors/",
+    UPDATE_BY_ID: "vendors/",
+    DELETE_BY_ID: "vendors/",
+    DOWNLOAD_EXCEL: "vendors/download-excel",
+  },
+  PurchseOrders: {
+    GET_LIST: "purchase_order",
+    ADD: "purchase_order/",
+    DOWNLOAD_BILL: "purchase_order/download_pdf/",
+    GET_BY_ID: "purchase_order/",
+    UPDATE_BY_ID: "purchase_order/",
+    DELETE_BY_ID: "purchase_order/",
+    DOWNLOAD_EXCEL: "purchase_order/download-excel",
+  },
   AppBanner: {
     GET_BANNER: "banners",
     UPDATE_BANNER_BY_ID: "banners/",
     DELETE_BANNER_IMAGE_BY_ID: "banners/delete_image/",
+    DELETE_BOTTOM_BANNER_IMAGE_BY_ID: "banners/delete_bottom_image/",
   },
   Documents: {
     Delete: {

@@ -33,7 +33,8 @@ const NavItem = ({ item, level, onMenuItemClick }) => {
     listItemProps = { component: 'a', href: item.url };
   }
 
-  const isSelected = location.pathname.toLowerCase().includes(item.id.toLowerCase());
+  const firstPart = location.pathname.split('/')[1];
+  const isSelected = firstPart ? firstPart === item.id.toLowerCase() : item.id.toLowerCase() === "dashboard";
 
   return (
     <ListItemButton

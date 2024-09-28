@@ -30,8 +30,12 @@ import {
 import { GiBlockHouse } from 'react-icons/gi';
 import { ImBook } from "react-icons/im";
 import { hasMenuPermission } from '../../../../helpers';
+import { TbShoppingBagPlus } from "react-icons/tb";
+import { BsShop } from "react-icons/bs";
 
 const icons = {
+  PurchaseOrderIcon: TbShoppingBagPlus,
+  VendorIcon: BsShop,
   BannersIcon: FaBullhorn,
   NavigationOutlinedIcon: FaHome,
   HomeOutlinedIcon: FaHome,
@@ -94,6 +98,13 @@ const MenuList = ({ onMenuItemClick }) => {
           icon: icons['UsersIcon'],
           url: '/users'
         },
+        hasMenuPermission('Vendors', 'can_read', permissions) && {
+          id: 'vendors',
+          title: 'Vendors',
+          type: 'item',
+          icon: icons['VendorIcon'],
+          url: '/vendors'
+        },
         hasMenuPermission('Brand', 'can_read', permissions) && {
           id: 'brands',
           title: 'Brands',
@@ -114,6 +125,13 @@ const MenuList = ({ onMenuItemClick }) => {
           type: 'item',
           icon: icons['ProductsIcon'],
           url: '/products'
+        },
+        hasMenuPermission('Purchase Order', 'can_read', permissions) && {
+          id: 'purchase_orders',
+          title: 'Purchse Orders',
+          type: 'item',
+          icon: icons['PurchaseOrderIcon'],
+          url: '/purchase_orders'
         },
         hasMenuPermission('Offer', 'can_read', permissions) && {
           id: 'offers',

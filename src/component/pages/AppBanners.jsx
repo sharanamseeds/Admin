@@ -88,6 +88,28 @@ function AppBanners() {
         }
     }
 
+    const deleteBottomImage = async (src) => {
+        try {
+            dispatch(startLoading());
+            const response = await axiosInstance.put(
+                AxiosInstancePaths.AppBanner.DELETE_BOTTOM_BANNER_IMAGE_BY_ID + banner?._id, {},
+                {
+                    params: {
+                        lang_code: langCode || 'en',
+                        payload: JSON.stringify({ src })
+                    },
+                }
+            );
+            showSuccessMessage(response?.data?.message);
+            dispatch(stopLoading());
+            fetchBannerData();
+        } catch (error) {
+            console.log(error);
+            showErrorMessage(error?.response?.data?.message);
+            dispatch(stopLoading());
+        }
+    }
+
     // const handleRemoveImages = (index) => {
     //     const files = formData?.images || []
     //     const removedfiles = files.filter((_, i) => i !== index)
@@ -114,10 +136,11 @@ function AppBanners() {
     const addBanner = async () => {
         try {
 
-            if (!formData?.images || !formData.images.length > 0) {
-                showErrorMessage("Select Images First");
+            if ((!formData?.images || formData.images.length === 0) && (!formData?.banners || formData.banners.length === 0)) {
+                showErrorMessage("Select Images or Banners First");
                 return;
             }
+            // banners
 
             dispatch(startLoading());
             const newFormData = new FormData();
@@ -126,6 +149,10 @@ function AppBanners() {
             if (formData?.images) {
                 documents.images = formData.images
                 delete tempFormData.images
+            }
+            if (formData?.banners) {
+                documents.banners = formData.banners
+                delete tempFormData.banners
             }
             objectToFormData(newFormData, documents);
             const response = await axiosInstance.put(
@@ -179,6 +206,7 @@ function AppBanners() {
                                         width="200px"
                                     />
                                 ))}
+
                                 {/* {formData?.images?.map((image, imageIndex) => (
                                     <ImageWithPreview
                                         key={imageIndex}
@@ -195,6 +223,30 @@ function AppBanners() {
                         </CardContent>
                     </Card>
                 </Grid> : ""}
+            {banner?.banners?.length > 0 ?
+                <Grid item xs={12}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }}>
+                                Bottom Image
+                            </Typography>
+                            <div style={{ display: 'flex', overflow: 'auto', gap: '0.5rem' }}>
+                                {banner?.banners?.map((image, imageIndex) => (
+                                    <ImageWithPreview
+                                        key={imageIndex}
+                                        src={AxiosInstancePaths.base_url + image}
+                                        deletePath={image}
+                                        deleteImage={deleteBottomImage}
+                                        isDeletable={true}
+                                        alt="User Profile"
+                                        height="200px"
+                                        width="200px"
+                                    />
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </Grid> : ""}
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
@@ -202,7 +254,7 @@ function AppBanners() {
                             Add New Banner
                         </Typography>
                         <Grid container spacing={2} alignItems="stretch">
-                            <Grid item xs={12} md={6} lg={5}>
+                            <Grid item xs={12} md={6} lg={4}>
                                 <FileUpload
                                     multiple={true}
                                     inputName="images*"
@@ -211,7 +263,15 @@ function AppBanners() {
                                     handleChange={(name, value) => handleSelectChange('images', value)}
                                 />
                             </Grid>
-                            <Grid item xs={12} md={6} lg={5}>
+                            <Grid item xs={12} md={6} lg={4}>
+                                <FileUpload
+                                    inputName="banner*"
+                                    error={errors?.banners?.message}
+                                    defaultFiles={formData?.banners}
+                                    handleChange={(name, value) => handleSelectChange('banners', value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={6} lg={3}>
                                 <SelectInput
                                     name="language"
                                     startEdit={true}
@@ -221,7 +281,7 @@ function AppBanners() {
                                     handleChange={(name, value) => setLangCode(value)}
                                 />
                             </Grid>
-                            <Grid item xs={12} md={6} lg={2} style={{
+                            <Grid item xs={12} md={6} lg={1} style={{
                                 display: 'flex', justifyContent: 'center', alignItems: 'center'
                             }}>
                                 <div>
