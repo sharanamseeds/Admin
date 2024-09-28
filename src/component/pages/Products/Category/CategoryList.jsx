@@ -64,6 +64,7 @@ function CategoryList({ permission }) {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -154,6 +155,7 @@ function CategoryList({ permission }) {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

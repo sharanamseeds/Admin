@@ -5,7 +5,7 @@ import FileUpload from "../../../Form/FileUpload";
 import Editor from "../../../Form/Editor";
 import { useDispatch } from "react-redux";
 import { CategorySchema, validateSchema } from "../../../../validation/validationSchema";
-import { createGeneralOptions, objectToFormData } from "../../../../helpers";
+import { createGeneralOptions, formatErrorObject, objectToFormData } from "../../../../helpers";
 import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice";
 import { showErrorMessage, showSuccessMessage } from "../../../../helpers/notificationService";
 import { useNavigate } from "react-router-dom";
@@ -83,6 +83,9 @@ function AddCategory() {
       navigate('/category')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -100,6 +103,9 @@ function AddCategory() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

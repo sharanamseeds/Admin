@@ -16,6 +16,7 @@ import {
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import BackNavigate from "../../Basic/BackNavigate";
+import { formatErrorObject } from "../../../helpers";
 
 
 function EditRole() {
@@ -70,6 +71,9 @@ function EditRole() {
       );
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -96,6 +100,9 @@ function EditRole() {
       navigate('/roles')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -115,6 +122,9 @@ function EditRole() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -132,6 +142,9 @@ function EditRole() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -147,6 +160,9 @@ function EditRole() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

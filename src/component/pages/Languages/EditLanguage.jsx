@@ -22,6 +22,7 @@ import {
   validateSchema,
 } from "../../../validation/validationSchema";
 import BackNavigate from "../../Basic/BackNavigate";
+import { formatErrorObject } from "../../../helpers";
 
 function EditLanguage() {
   const theme = useTheme();
@@ -74,6 +75,9 @@ function EditLanguage() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -95,6 +99,9 @@ function EditLanguage() {
       navigate('/languages')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

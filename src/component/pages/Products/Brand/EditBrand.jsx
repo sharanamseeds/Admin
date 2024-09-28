@@ -8,7 +8,7 @@ import axiosInstance from "../../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../../helpers/notificationService";
 import { useDispatch } from "react-redux";
-import { createGeneralOptions, objectToFormData } from "../../../../helpers";
+import { createGeneralOptions, formatErrorObject, objectToFormData } from "../../../../helpers";
 import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice";
 import SelectInput from "../../../Form/SelectInput";
 import { useTheme } from "@mui/material";
@@ -85,6 +85,9 @@ function EditBrand() {
       navigate('/brands')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -107,6 +110,9 @@ function EditBrand() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -125,6 +131,9 @@ function EditBrand() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

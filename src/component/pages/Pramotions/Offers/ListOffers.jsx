@@ -65,6 +65,7 @@ function ListOffers({ permission }) {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -129,6 +130,7 @@ function ListOffers({ permission }) {
       fetchOfferList();
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -154,6 +156,7 @@ function ListOffers({ permission }) {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

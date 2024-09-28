@@ -3,7 +3,7 @@ import TextInput from "../../../Form/TextInput";
 import { Box, Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import FileUpload from "../../../Form/FileUpload";
 import { BrandSchema, validateSchema } from "../../../../validation/validationSchema";
-import { createGeneralOptions, objectToFormData } from "../../../../helpers";
+import { createGeneralOptions, formatErrorObject, objectToFormData } from "../../../../helpers";
 import axiosInstance from "../../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../../config/AxiosInstancePaths";
 import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice";
@@ -68,6 +68,9 @@ function AddBrand() {
       navigate('/brands')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -85,6 +88,9 @@ function AddBrand() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

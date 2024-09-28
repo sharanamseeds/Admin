@@ -135,8 +135,8 @@ function EditUser() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
@@ -189,8 +189,8 @@ function EditUser() {
       navigate("/users");
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
@@ -209,8 +209,8 @@ function EditUser() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
@@ -229,7 +229,9 @@ function EditUser() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      showErrorMessage(error?.response?.data?.message);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      } showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
   };
@@ -248,7 +250,9 @@ function EditUser() {
       await fetchAccountData();
     } catch (error) {
       console.log(error);
-      showErrorMessage(error?.response?.data?.message);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      } showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
   };

@@ -19,6 +19,7 @@ import {
 import { languageSchema, validateSchema } from "../../../validation/validationSchema";
 import { useNavigate } from "react-router-dom";
 import BackNavigate from "../../Basic/BackNavigate";
+import { formatErrorObject } from "../../../helpers";
 
 function AddLanguage() {
   const theme = useTheme();
@@ -55,6 +56,9 @@ function AddLanguage() {
       navigate('/languages');
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

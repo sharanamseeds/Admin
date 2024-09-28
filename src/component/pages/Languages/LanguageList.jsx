@@ -67,6 +67,7 @@ function LanguageList({ permission }) {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -123,6 +124,7 @@ function LanguageList({ permission }) {
       fetchLanguageData();
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

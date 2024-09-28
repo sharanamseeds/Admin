@@ -4,7 +4,7 @@ import TextInput from "../../../Form/TextInput";
 import FileUpload from "../../../Form/FileUpload";
 import SelectInput from "../../../Form/SelectInput";
 import SwitchInput from "../../../Form/SwitchInput";
-import { calculateStandardQty, createGeneralOptions, createProductOptions, formatDate, objectToFormData } from "../../../../helpers";
+import { calculateStandardQty, createGeneralOptions, createProductOptions, formatDate, formatErrorObject, objectToFormData } from "../../../../helpers";
 import Editor from "../../../Form/Editor";
 import { useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../../../redux/slices/loadingSlice";
@@ -95,6 +95,9 @@ function AddProduct() {
       navigate('/products')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -116,6 +119,9 @@ function AddProduct() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -137,6 +143,9 @@ function AddProduct() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -155,6 +164,9 @@ function AddProduct() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

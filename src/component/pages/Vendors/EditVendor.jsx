@@ -100,8 +100,8 @@ function EditVendor() {
       navigate("/vendors");
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
@@ -120,8 +120,8 @@ function EditVendor() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());

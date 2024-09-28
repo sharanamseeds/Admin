@@ -10,7 +10,7 @@ function TextInput({
   seperatedLabel = false,
   sepratedUpdate = false,
   prefix = [],
-  suffix,
+  suffix = [],
   type = "text",
   name,
   error = null,
@@ -133,6 +133,7 @@ function TextInput({
                   </>
                 )}
               </>
+
             ),
             style: {
               padding: "0.5rem",

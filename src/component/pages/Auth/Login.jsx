@@ -8,7 +8,7 @@ import {
   validateSchema,
 } from "../../../validation/validationSchema";
 import InputError from "../../Basic/InputError";
-import { saveLoginData } from "../../../helpers";
+import { formatErrorObject, saveLoginData } from "../../../helpers";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
@@ -75,6 +75,9 @@ const Login = () => {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import TextInput from "../../Form/TextInput";
 import SelectInput from "../../Form/SelectInput";
-import { createProductOptions, formatDate, objectToFormData } from "../../../helpers";
+import { createProductOptions, formatDate, formatErrorObject, objectToFormData } from "../../../helpers";
 import { MdDelete } from "react-icons/md";
 import { IconButton } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -113,6 +113,9 @@ function AddOrders() {
       navigate('/purchase_orders')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -235,6 +238,9 @@ function AddOrders() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -254,6 +260,9 @@ function AddOrders() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

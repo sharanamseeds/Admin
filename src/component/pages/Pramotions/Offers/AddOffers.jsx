@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import FileUpload from "../../../Form/FileUpload";
 import Editor from "../../../Form/Editor";
-import { createGeneralOptions, createProductOptions, objectToFormData } from "../../../../helpers";
+import { createGeneralOptions, createProductOptions, formatErrorObject, objectToFormData } from "../../../../helpers";
 import SelectInput from "../../../Form/SelectInput";
 import TextInput from "../../../Form/TextInput";
 import { useDispatch } from "react-redux";
@@ -263,6 +263,9 @@ function AddOffers() {
       navigate('/offers')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -284,6 +287,9 @@ function AddOffers() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -302,6 +308,9 @@ function AddOffers() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -323,6 +332,9 @@ function AddOffers() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

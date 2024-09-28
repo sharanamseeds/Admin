@@ -17,7 +17,7 @@ import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
 import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificationService";
 import { useDispatch } from "react-redux";
 import InputError from "../../Basic/InputError";
-import { clearLocalStorage } from "../../../helpers";
+import { clearLocalStorage, formatErrorObject } from "../../../helpers";
 
 const ForgotPassword = () => {
   const theme = useTheme();
@@ -87,6 +87,9 @@ const ForgotPassword = () => {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -115,7 +118,9 @@ const ForgotPassword = () => {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      showErrorMessage(error?.response?.data?.message);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      } showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
   }
@@ -144,7 +149,9 @@ const ForgotPassword = () => {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      showErrorMessage(error?.response?.data?.message);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      } showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
   }
@@ -173,7 +180,9 @@ const ForgotPassword = () => {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
-      showErrorMessage(error?.response?.data?.message);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      } showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
   }

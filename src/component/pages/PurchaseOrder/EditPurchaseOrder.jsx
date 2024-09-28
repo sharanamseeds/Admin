@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Card, CardContent, Grid, Typography } from "@mui/material";
-import { formatDate, objectToFormData } from "../../../helpers";
+import { formatDate, formatErrorObject, objectToFormData } from "../../../helpers";
 import { useDispatch } from "react-redux";
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
@@ -84,6 +84,9 @@ function EditPurchaseOrder() {
       navigate('/purchase_orders')
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -118,6 +121,9 @@ function EditPurchaseOrder() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -141,6 +147,9 @@ function EditPurchaseOrder() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
+      }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

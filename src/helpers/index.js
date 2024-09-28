@@ -122,7 +122,6 @@ export const formatErrorObject = (errorObj) => {
       currentLevel = currentLevel[part];
     });
   });
-
   return formattedErrors;
 };
 

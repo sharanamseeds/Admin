@@ -35,6 +35,7 @@ function ViewBrand() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }
@@ -53,6 +54,7 @@ function ViewBrand() {
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
+
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
     }

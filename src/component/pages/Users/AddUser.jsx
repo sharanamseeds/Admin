@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextInput from "../../Form/TextInput";
-import { Button, Grid, Card, CardContent, Typography, useTheme, CircularProgress } from "@mui/material";
+import { Button, Grid, Card, CardContent, Typography, useTheme, CircularProgress, IconButton } from "@mui/material";
 import SwitchInput from "../../Form/SwitchInput";
 import FileUpload from "../../Form/FileUpload";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import { UserSchema, validateSchema } from "../../../validation/validationSchema
 import { useNavigate } from "react-router-dom";
 import ImageWithPreview from "../../Basic/ImagePreview";
 import BackNavigate from "../../Basic/BackNavigate";
+import { FaLock, FaEye } from "react-icons/fa";
 
 function AddUser() {
   const theme = useTheme();
@@ -21,6 +22,7 @@ function AddUser() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSelectChange = (name, value) => {
     const keys = name.split(".");
@@ -95,8 +97,8 @@ function AddUser() {
       navigate('/users');
     } catch (error) {
       console.log(error);
-      if (error?.response?.data?.error === "Validation failed" && error?.response?.data?.errorObject) {
-        setErrors(formatErrorObject(error?.response?.data?.errorObject))
+      if (error?.response?.data?.errors) {
+        setErrors(formatErrorObject(error?.response?.data?.errors))
       }
       showErrorMessage(error?.response?.data?.message);
       dispatch(stopLoading());
@@ -194,10 +196,27 @@ function AddUser() {
               <Grid item xs={12} >
                 <TextInput
                   name={"password*"}
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   startEdit={true}
                   error={errors?.password?.message}
                   handleChange={(name, value) => handleSelectChange('password', value)}
+                  prefix={[
+                    showConfirmPassword ?
+                      <IconButton
+                        size="small"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        style={{ color: theme.palette.secondary.main, marginRight: '0.5rem' }}
+                      >
+                        < FaLock />
+                      </IconButton> :
+                      <IconButton
+                        size="small"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        style={{ color: theme.palette.secondary.main, marginRight: '0.5rem' }}
+                      >
+                        <FaEye />
+                      </IconButton>
+                  ]}
                 />
               </Grid>
             </Grid>
