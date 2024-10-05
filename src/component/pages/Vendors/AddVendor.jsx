@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../../redux/slices/loadingSlice";
 import axiosInstance from "../../../config/AxiosConfig";
 import AxiosInstancePaths from "../../../config/AxiosInstancePaths";
-import { formatErrorObject } from "../../../helpers";
+import { capitalizeWords, formatErrorObject } from "../../../helpers";
 import { showErrorMessage, showSuccessMessage } from "../../../helpers/notificationService";
 import { addVendorSchema, validateSchema } from "../../../validation/validationSchema";
 import { useNavigate } from "react-router-dom";
@@ -119,7 +119,8 @@ function AddVendor() {
                   name={"gst_number"}
                   startEdit={true}
                   error={errors?.gst_number?.message}
-                  handleChange={handleSelectChange}
+                  defaultValue={formData?.gst_number}
+                  handleChange={(name, value) => handleSelectChange('gst_number', capitalizeWords(value))}
                 />
               </Grid>
               <Grid item xs={12} >

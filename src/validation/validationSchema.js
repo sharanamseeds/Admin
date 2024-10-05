@@ -606,31 +606,19 @@ export const updateVendorSchema = yup.object().shape({
   }),
 });
 
-// Product schema
 export const productSchema = yup.object().shape({
   product_id: yup.string().required(),
   quantity: yup.number().required(),
-  offer_discount: yup.number().default(0),
-  total_amount: yup.number().required(),
-  gst_rate: yup.number().required(),
-  purchase_price: yup.number().required(),
-  gst_amount: yup.number().required(),
   lot_no: yup.string().required(),
   manufacture_date: yup.date().required(),
   expiry_date: yup.date().required(),
 });
 
-// Add Purchase Order schema
 export const addPurchaseOrderSchema = yup.object().shape({
   vendor_id: yup.string().required(),
-  invoice_no: yup.string().required(),
-  // purchase_invoice: yup.string().nullable(), // If a file, use file validation logic
-  purchase_date: yup.date(),
+  contact_name: yup.string().required(),
+  contact_number: yup.string().required(),
   products: yup.array().of(productSchema).required(),
-  order_amount: yup.number().required(),
-  discount_amount: yup.number().default(0),
-  billing_amount: yup.number().required(),
-  tax_amount: yup.number().required(),
   advance_payment_amount: yup.number().default(0),
   status: yup
     .string()
@@ -643,15 +631,13 @@ export const addPurchaseOrderSchema = yup.object().shape({
     ])
     .required(),
   payment_status: yup.string().oneOf(["paid", "unpaid"]).required(),
-  is_creditable: yup.boolean().default(false),
-  credit_duration: yup.number().default(0),
   order_notes: yup.string().default(""),
 });
 
-// Update Purchase Order schema
 export const updatePurchaseOrderSchema = yup.object().shape({
-  invoice_no: yup.string(),
-  purchase_date: yup.date(),
+  contact_name: yup.string(),
+  contact_number: yup.string(),
+  products: yup.array().of(productSchema),
   status: yup
     .string()
     .oneOf([

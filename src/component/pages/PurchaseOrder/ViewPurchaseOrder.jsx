@@ -11,7 +11,6 @@ import { useTheme } from "@mui/material";
 import BackNavigate from "../../Basic/BackNavigate";
 import html2pdf from 'html2pdf.js';
 import { formatDate, snakeToTitleCase } from '../../../helpers';
-import ImageWithPreview from "../../Basic/ImagePreview";
 
 function ViewPurchaseOrder() {
   const { id } = useParams();
@@ -156,6 +155,29 @@ function ViewPurchaseOrder() {
           </CardContent>
         </Card>
       </Grid>
+      <Grid item xs={12} md={6}>
+        <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <CardContent style={{ flex: 1 }}>
+            <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
+              Basic Info
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <FilledInput label="payment_status" value={snakeToTitleCase(order?.payment_status) || "Not Set"} disabled />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FilledInput label="status" value={snakeToTitleCase(order?.status) || "Not Set"} disabled />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FilledInput label="advance_payment_amount" value={order?.advance_payment_amount || "0"} disabled />
+              </Grid>
+              <Grid item xs={12} >
+                <FilledInput label="order_notes" value={order?.order_notes || "-"} disabled />
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
       <Grid item xs={12}>
         <div style={{ width: "100%" }}>
           <div style={{
@@ -184,16 +206,10 @@ function ViewPurchaseOrder() {
               Quantity
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Rate
+              UoM
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              GST Rate
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              GST Amount
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Discount
+              Quantity (in Kg/ Ltr.)
             </div>
           </div>
         </div>
@@ -235,16 +251,10 @@ function ViewPurchaseOrder() {
                 {item.quantity}
               </div>
               <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                {item.purchase_price}
+                {item.uom}
               </div>
               <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                {item.gst_rate}%
-              </div>
-              <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                {item.gst_amount}
-              </div>
-              <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                {item.offer_discount}
+                {item.final_quantity}
               </div>
             </div>
           )) : (
@@ -263,48 +273,7 @@ function ViewPurchaseOrder() {
           </div>
         )}
       </Grid>
-      <Grid item xs={12} >
-        <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-          <CardContent style={{ flex: 1, textAlign: 'right' }}>
-            <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
-              Amount Details
-            </Typography>
-            <p>Advance Payment: {order?.advance_payment_amount}</p>
-            <p>Order Amount: {order?.order_amount}</p>
-            <p>Discount Amount: {order?.discount_amount}</p>
-            <p>Tax Amount: {order?.tax_amount}</p>
-            <p>Billing Amount: {order?.billing_amount}</p>
-            <p>Final Amount: {order?.billing_amount - order?.advance_payment_amount}</p>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-          <CardContent style={{ flex: 1 }}>
-            <Typography variant="h4" style={{ fontWeight: "bold", marginBottom: '0.75rem' }} sx={{ marginBottom: "0.5rem" }}>
-              Basic Info
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <FilledInput label="payment_status" value={snakeToTitleCase(order?.payment_status) || "Not Set"} disabled />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <FilledInput label="status" value={snakeToTitleCase(order?.status) || "Not Set"} disabled />
-              </Grid>
-            </Grid>
-            <Box sx={{ display: "flex", justifyContent: "center", margin: "1rem 0px" }}>
-              <ImageWithPreview
-                src={order?.purchase_invoice ? AxiosInstancePaths.base_url + order?.purchase_invoice : ""}
-                alt="User Profile"
-                height="145px"
-                width="145px"
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid item xs={12}>
+      {order?.status === "completed" ? <Grid item xs={12}>
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: '1rem' }}>
           <Button
             variant="contained"
@@ -321,7 +290,8 @@ function ViewPurchaseOrder() {
             Download Pdf
           </Button>
         </Box>
-      </Grid>
+      </Grid> : ''}
+
     </Grid>
   );
 }

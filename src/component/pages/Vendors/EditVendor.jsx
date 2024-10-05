@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import TextInput from "../../Form/TextInput";
 import { Button, Grid, Box, Typography, useTheme } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { formatErrorObject } from "../../../helpers";
+import { capitalizeWords, formatErrorObject } from "../../../helpers";
 import { startLoading, stopLoading } from "../../../redux/slices/loadingSlice";
 import {
   showErrorMessage,
@@ -198,7 +198,7 @@ function EditVendor() {
                   startEdit={true}
                   error={errors?.gst_number?.message}
                   defaultValue={formData?.gst_number || user?.gst_number}
-                  handleChange={handleSelectChange}
+                  handleChange={(name, value) => handleSelectChange('gst_number', capitalizeWords(value))}
                 />
               </Grid>
               <Grid item xs={12} >

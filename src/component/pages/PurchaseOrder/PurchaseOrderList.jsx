@@ -230,29 +230,6 @@ function PurchaseOrderList({ permission }) {
             />
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            Bill Amt
-            <DropDrown
-              name="billing_amount"
-              icon={
-                filter?.sortField &&
-                  filter.sortField === "billing_amount" &&
-                  filter.sortBy === "asc" ? (
-                  <BsSortNumericDown color="#0B476D" size={15} />
-                ) : (
-                  <BsSortNumericDownAlt color="#0B476D" size={15} />
-                )
-              }
-              onSelect={handleFilter}
-              options={totalAmountFilter}
-              value={filter?.sortField &&
-                filter.sortField === "billing_amount" ?
-                filter.sortBy : ""}
-            />
-          </div>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            Creditable Order
-          </div>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
             Status
             <DropDrown
               name="status"
@@ -304,12 +281,6 @@ function PurchaseOrderList({ permission }) {
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {order.advance_payment_amount}
-          </div>
-          <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-            {order.billing_amount}
-          </div>
-          <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
-            {order.is_creditable ? "Creditable" : 'Regular'}
           </div>
           <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
             {snakeToTitleCase(order.status)}

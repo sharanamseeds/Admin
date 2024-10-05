@@ -15,9 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 import BackNavigate from "../../Basic/BackNavigate";
 import InputError from "../../Basic/InputError";
-import SwitchInput from "../../Form/SwitchInput";
-import ImageWithPreview from "../../Basic/ImagePreview";
-import FileUpload from "../../Form/FileUpload";
+
 
 function AddOrders() {
   const navigate = useNavigate()
@@ -146,17 +144,11 @@ function AddOrders() {
     // const areProductsEqual = (product1, product2) => {
     //   return (
     //     product1.product_id === product2.product_id &&
-    //     product1.offer_discount === product2.offer_discount &&
-    //     product1.total_amount === product2.total_amount &&
-    //     product1.gst_rate === product2.gst_rate &&
-    //     product1.purchase_price === product2.purchase_price &&
-    //     product1.gst_amount === product2.gst_amount &&
     //     product1.lot_no === product2.lot_no &&
     //     areDatesEqual(product1.manufacture_date, product2.manufacture_date) &&
     //     areDatesEqual(product1.expiry_date, product2.expiry_date)
     //   );
     // };
-
 
     // const isAddedQuantity = allProducts.find(item =>
     //   areProductsEqual(item, productForm)
@@ -172,11 +164,6 @@ function AddOrders() {
     //   const updatedProduct = {
     //     product_id: productForm.product_id,
     //     quantity: newQuantity,
-    //     offer_discount: productForm.offer_discount || 0,
-    //     total_amount: productForm.total_amount,
-    //     gst_rate: productForm.gst_rate,
-    //     purchase_price: productForm.purchase_price,
-    //     gst_amount: productForm.gst_amount,
     //     lot_no: productForm.lot_no,
     //     manufacture_date: new Date(productForm.manufacture_date),
     //     expiry_date: new Date(productForm.expiry_date),
@@ -187,11 +174,6 @@ function AddOrders() {
     //   const product = {
     //     product_id: productForm.product_id,
     //     quantity: productForm.quantity,
-    //     offer_discount: productForm.offer_discount || 0,
-    //     total_amount: productForm.total_amount,
-    //     gst_rate: productForm.gst_rate,
-    //     purchase_price: productForm.purchase_price,
-    //     gst_amount: productForm.gst_amount,
     //     lot_no: productForm.lot_no,
     //     manufacture_date: new Date(productForm.manufacture_date),
     //     expiry_date: new Date(productForm.expiry_date),
@@ -204,11 +186,6 @@ function AddOrders() {
     const product = {
       product_id: productForm.product_id,
       quantity: productForm.quantity,
-      offer_discount: productForm.offer_discount || 0,
-      total_amount: productForm.total_amount,
-      gst_rate: productForm.gst_rate,
-      purchase_price: productForm.purchase_price,
-      gst_amount: productForm.gst_amount,
       lot_no: productForm.lot_no,
       manufacture_date: new Date(productForm.manufacture_date),
       expiry_date: new Date(productForm.expiry_date),
@@ -295,64 +272,9 @@ function AddOrders() {
                   handleChange={(name, value) => handleSelectChange('vendor_id', value)}
                 />
               </Grid>
-
-              <Grid item xs={12} md={6}>
-                <TextInput
-                  name="invoice_no*"
-                  defaultValue={formData?.invoice_no}
-                  error={errors?.invoice_no?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('invoice_no', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextInput
-                  name="order_amount*"
-                  type="number"
-                  defaultValue={formData?.order_amount}
-                  error={errors?.order_amount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('order_amount', value)}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={6}>
-                <TextInput
-                  name="billing_amount*"
-                  type="number"
-                  defaultValue={formData?.billing_amount}
-                  error={errors?.billing_amount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('billing_amount', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextInput
-                  name="tax_amount*"
-                  type="number"
-                  defaultValue={formData?.tax_amount}
-                  error={errors?.tax_amount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('tax_amount', value)}
-                />
-              </Grid>
               <Grid item xs={12} md={6}>
                 <SelectInput
-                  name="payment_status"
-                  startEdit={true}
-                  defaultValue={formData?.payment_status}
-                  error={errors?.payment_status?.message}
-                  options={[
-                    { label: "Unpaid", value: "unpaid" },
-                    { label: "Paid", value: "paid" },
-                  ]}
-                  handleChange={(name, value) => handleSelectChange('payment_status', value)}
-                  seperatedLabel={true}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <SelectInput
-                  name="status"
+                  name="status*"
                   startEdit={true}
                   defaultValue={formData?.status}
                   error={errors?.status?.message}
@@ -368,24 +290,17 @@ function AddOrders() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <TextInput
-                  name="discount_amount"
-                  type="number"
-                  defaultValue={formData?.discount_amount}
-                  error={errors?.discount_amount?.message}
+                <SelectInput
+                  name="payment_status*"
                   startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('discount_amount', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextInput
-                  type="date"
-                  name={"purchase_date"}
-                  error={errors?.purchase_date?.message}
-                  seperatedLabel={false}
-                  startEdit={true}
-                  defaultValue={formatDate(new Date(formData?.purchase_date))}
-                  handleChange={(name, value) => { handleSelectChange("purchase_date", new Date(value)) }}
+                  defaultValue={formData?.payment_status}
+                  error={errors?.payment_status?.message}
+                  options={[
+                    { label: "Unpaid", value: "unpaid" },
+                    { label: "Paid", value: "paid" },
+                  ]}
+                  handleChange={(name, value) => handleSelectChange('payment_status', value)}
+                  seperatedLabel={true}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -400,51 +315,29 @@ function AddOrders() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextInput
-                  name="order_notes"
-                  type="number"
-                  defaultValue={formData?.order_notes}
-                  error={errors?.order_notes?.message}
+                  name="contact_name"
+                  defaultValue={formData?.contact_name}
+                  error={errors?.contact_name?.message}
                   startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('order_notes', value)}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
-                <SwitchInput
-                  name="Creadit Status"
-                  startEdit={true}
-                  error={errors?.is_creditable?.message}
-                  handleChange={(name, value) => handleSelectChange('is_creditable', value)}
-                  defaultValue={formData?.is_creditable}
+                  handleChange={(name, value) => handleSelectChange('contact_name', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextInput
-                  name="Credit Days"
-                  type="number"
-                  defaultValue={formData?.credit_duration}
-                  error={errors?.credit_duration?.message}
+                  name="contact_number"
+                  defaultValue={formData?.contact_number}
+                  error={errors?.contact_number?.message}
                   startEdit={true}
-                  handleChange={(name, value) => handleSelectChange('credit_duration', value)}
+                  handleChange={(name, value) => handleSelectChange('contact_number', value)}
                 />
               </Grid>
-              <Grid item xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
-                <div>
-                  <FileUpload
-                    inputName="Purchase Invoice"
-                    defaultFiles={formData.purchase_invoice}
-                    error={errors?.purchase_invoice?.message}
-                    handleChange={(name, value) => handleSelectChange('purchase_invoice', value)}
-                  />
-                </div>
-              </Grid>
-              <Grid item xs={12} sm={12} display="flex" flexDirection="column" alignItems="center">
-                <ImageWithPreview
-                  src={formData?.purchase_invoice?.length > 0
-                    ? URL.createObjectURL(formData.purchase_invoice[0]) : ""}
-                  alt="purchase_invoice"
-                  height="102px"
-                  width="102px"
+              <Grid item xs={12} >
+                <TextInput
+                  name="order_notes"
+                  defaultValue={formData?.order_notes}
+                  error={errors?.order_notes?.message}
+                  startEdit={true}
+                  handleChange={(name, value) => handleSelectChange('order_notes', value)}
                 />
               </Grid>
             </Grid>
@@ -480,56 +373,7 @@ function AddOrders() {
                   handleChange={(name, value) => handleProductChange('quantity', value)}
                 />
               </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
-                <TextInput
-                  name="offer_discount*"
-                  type="number"
-                  defaultValue={productForm?.offer_discount}
-                  error={errors?.offer_discount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleProductChange('offer_discount', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
-                <TextInput
-                  name="purchase_price*"
-                  type="number"
-                  defaultValue={productForm?.purchase_price}
-                  error={errors?.purchase_price?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleProductChange('purchase_price', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
-                <TextInput
-                  name="gst_rate*"
-                  type="number"
-                  defaultValue={productForm?.gst_rate}
-                  error={errors?.gst_rate?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleProductChange('gst_rate', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
-                <TextInput
-                  name="gst_amount*"
-                  type="number"
-                  defaultValue={productForm?.gst_amount}
-                  error={errors?.gst_amount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleProductChange('gst_amount', value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} lg={6} sm={12}>
-                <TextInput
-                  name="total_amount*"
-                  type="number"
-                  defaultValue={productForm?.total_amount}
-                  error={errors?.total_amount?.message}
-                  startEdit={true}
-                  handleChange={(name, value) => handleProductChange('total_amount', value)}
-                />
-              </Grid>
+
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <TextInput
                   name="lot_no*"
@@ -607,21 +451,6 @@ function AddOrders() {
               Quantity
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Discount
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Price
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Gst Rt.
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Gst Amt
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              Total Amt
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
               Lot No
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -655,21 +484,6 @@ function AddOrders() {
             </div>
             <div style={{ flex: 1, display: "flex", gap: '0.2rem', justifyContent: "center", alignItems: "center" }}>
               {item.quantity}
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {item.offer_discount}
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {item.purchase_price}
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {item.gst_rate}
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {item.gst_amount}
-            </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {item.total_amount}
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
               {item.lot_no}

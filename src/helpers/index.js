@@ -179,3 +179,7 @@ export const calculateStandardQty = (base_unit, quantity) => {
   }
   return std_qty;
 };
+
+export const capitalizeWords = (str) => {
+  return str.toUpperCase(); // Convert the entire string to uppercase
+};

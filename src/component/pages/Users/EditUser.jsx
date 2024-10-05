@@ -8,7 +8,7 @@ import SelectInput from "../../Form/SelectInput";
 import SwitchInput from "../../Form/SwitchInput";
 import FileUpload from "../../Form/FileUpload";
 import { useDispatch } from "react-redux";
-import { createGeneralOptions, formatDate, formatErrorObject, objectToFormData } from "../../../helpers";
+import { capitalizeWords, createGeneralOptions, formatDate, formatErrorObject, objectToFormData } from "../../../helpers";
 import { startLoading, stopLoading } from "../../../redux/slices/loadingSlice";
 import {
   showErrorMessage,
@@ -335,8 +335,8 @@ function EditUser() {
                   name={"gst_number"}
                   startEdit={true}
                   error={errors?.gst_number?.message}
-                  defaultValue={user?.gst_number}
-                  handleChange={handleSelectChange}
+                  defaultValue={formData?.gst_number || user?.gst_number}
+                  handleChange={(name, value) => handleSelectChange('gst_number', capitalizeWords(value))}
                 />
               </Grid>
             </Grid>
