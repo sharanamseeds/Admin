@@ -265,10 +265,11 @@ const Default = () => {
               subItems={[
                 { name: 'Paid Sell Money', value: data?.accounts?.paid?.sellAmount || 0 },
                 { name: 'Unpaid Sell Money', value: data?.accounts?.outstandings?.sellAmount || 0 },
-                { name: 'Paid Buy Money', value: data?.accounts?.paid?.purchaseAmount || 0 },
-                { name: 'Unpaid Buy Money', value: data?.accounts?.outstandings?.purchaseAmount || 0 }
+                // { name: 'Paid Buy Money', value: data?.accounts?.paid?.purchaseAmount || 0 },
+                // { name: 'Unpaid Buy Money', value: data?.accounts?.outstandings?.purchaseAmount || 0 }
               ]}
-              count={data?.accounts?.on_hand || 0}
+              count={data?.accounts?.paid?.sellAmount || 0}
+              // count={data?.accounts?.on_hand || 0}
               icon={<RiMoneyRupeeCircleFill color={theme.palette.success.main} />}
               color={theme.palette.success.main} />
           </Grid>
