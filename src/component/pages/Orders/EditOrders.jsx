@@ -430,7 +430,7 @@ function EditOrder() {
                   <Grid item xs={12} sm={12} display="flex" flexDirection="column" alignItems="center">
                     <ImageWithPreview
                       src={formData?.payment_details?.length > 0
-                        ? URL.createObjectURL(formData.payment_details[0]) : ""}
+                        ? URL.createObjectURL(formData.payment_details[0]) : order?.payment_details ? AxiosInstancePaths.base_url + order?.payment_details : ""}
                       alt="payment_details"
                       height="102px"
                       width="102px"
@@ -453,7 +453,7 @@ function EditOrder() {
                 <Grid item xs={12} sm={12} display="flex" flexDirection="column" alignItems="center">
                   <ImageWithPreview
                     src={formData?.document?.length > 0
-                      ? URL.createObjectURL(formData.document[0]) : ""}
+                      ? URL.createObjectURL(formData.document[0]) : order?.document ? AxiosInstancePaths.base_url + order?.document : ""}
                     alt="document"
                     height="102px"
                     width="102px"

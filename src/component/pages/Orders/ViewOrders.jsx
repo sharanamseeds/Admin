@@ -9,6 +9,7 @@ import { startLoading, stopLoading } from "../../../redux/slices/loadingSlice";
 import { showErrorMessage } from "../../../helpers/notificationService";
 import { useTheme } from "@mui/material";
 import BackNavigate from "../../Basic/BackNavigate";
+import ImageWithPreview from "../../Basic/ImagePreview";
 
 function ViewOrders() {
   const { id } = useParams();
@@ -154,6 +155,19 @@ function ViewOrders() {
               </Grid>
               <Grid item xs={12} >
                 <FilledInput label={"Reason"} value={order?.reason} />
+              </Grid>
+              <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                <p style={{ marginTop: '0px' }}>
+                  Document
+                </p>
+                <div>
+                  <ImageWithPreview
+                    src={order?.document ? AxiosInstancePaths.base_url + order?.document : ""}
+                    alt="document"
+                    height="102px"
+                    width="102px"
+                  />
+                </div>
               </Grid>
             </Grid>
           </CardContent>

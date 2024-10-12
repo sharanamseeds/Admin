@@ -214,6 +214,9 @@ function ViewProduct() {
                   value={product?.expiry_date ? formatDate(new Date(product?.expiry_date)) : ''}
                 />
               </Grid>
+              <Grid item xs={12} md={6}>
+                <FilledInput label={"App Price"} value={product?.price_with_gst} />
+              </Grid>
             </Grid>
           </CardContent>
         </Card>

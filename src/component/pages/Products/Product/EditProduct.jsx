@@ -32,6 +32,20 @@ function EditProduct() {
   const [languages, setLanguages] = useState([]);
   const navigate = useNavigate()
 
+  const calculateGstAmount = (gst_percent, price) => {
+    if (!gst_percent && !price) {
+      return null
+    }
+    if (gst_percent > 0) {
+      const gst =
+        (price * gst_percent) / 100;
+      const new_price = price + Number(gst.toFixed(2));
+      return new_price;
+    } else {
+      return price;
+    }
+  }
+
   const handleSelectChange = (name, value) => {
     const keys = name.split(".");
     setFormData((prevData) => {
@@ -349,6 +363,9 @@ function EditProduct() {
                   handleChange={(name, value) => { handleSelectChange(name, new Date(value)) }}
                   defaultValue={formData?.expiry_date ? formatDate(new Date(formData?.expiry_date)) : formatDate(new Date(product?.expiry_date))}
                 />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FilledInput label={"App Price"} value={calculateGstAmount(formData?.gst_percent || product?.gst_percent, formData?.price || product?.price) || product?.price_with_gst} />
               </Grid>
             </Grid>
           </CardContent>

@@ -315,7 +315,7 @@ function AddOrders() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextInput
-                  name="contact_name"
+                  name="contact_name*"
                   defaultValue={formData?.contact_name}
                   error={errors?.contact_name?.message}
                   startEdit={true}
@@ -324,7 +324,7 @@ function AddOrders() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextInput
-                  name="contact_number"
+                  name="contact_number*"
                   defaultValue={formData?.contact_number}
                   error={errors?.contact_number?.message}
                   startEdit={true}
