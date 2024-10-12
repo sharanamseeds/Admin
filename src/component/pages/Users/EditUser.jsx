@@ -132,6 +132,7 @@ function EditUser() {
       );
       showSuccessMessage(response?.data?.message);
       await fetchAccountData()
+      setMoneyFormData({})
       dispatch(stopLoading());
     } catch (error) {
       console.log(error);
@@ -579,12 +580,12 @@ function EditUser() {
             </Grid>
             <Grid item xs={12} md={6} lg={5}>
               <TextInput
-                name={"amount"}
+                name={"amount*"}
                 type="number"
                 startEdit={true}
                 defaultValue={moneyFormData?.amount}
                 error={errors?.amount?.message}
-                handleChange={handleMoneySelectChange}
+                handleChange={(name, value) => handleMoneySelectChange('amount', value)}
               />
             </Grid>
             <Grid item xs={12} md={6} lg={5}>

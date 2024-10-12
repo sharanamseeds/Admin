@@ -105,7 +105,7 @@ const Signup = () => {
 
   return (
     wait ? <Container maxWidth="xs" style={{ margin: '0rem', padding: "0px", marginTop: '1rem' }}>
-      <h1 style={{ textAlign: 'center' }}>Welcome to Agroveda!</h1>
+      <h1 style={{ textAlign: 'center' }}>Welcome to Khetiwala!</h1>
       <p style={{ textAlign: 'center' }}>Thank you for creating an account with us!</p>
       <p style={{ textAlign: 'center' }}>Your account is currently under review. We will notify you once your account is verified.</p>
     </Container> :

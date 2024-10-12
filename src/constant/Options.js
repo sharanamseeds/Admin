@@ -64,6 +64,7 @@ export const productBaseUnitOption = [
   { label: "ML", value: "ML" },
   { label: "KG", value: "KG" },
   { label: "LTR", value: "LTR" },
+  { label: "EACH", value: "EACH" },
 ];
 
 export const offerType = [

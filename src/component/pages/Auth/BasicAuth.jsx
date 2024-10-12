@@ -38,7 +38,7 @@ const BasicAuth = ({ page, title = "Sign in" }) => {
                                 <Typography color="textPrimary" gutterBottom variant="h2" sx={{ m: 0 }}>
                                     {title}
                                 </Typography>
-                                <Button variant="text"><img alt="Auth method" width="138" height="32" src={Logo} /></Button>
+                                <Button variant="text"><img alt="Auth method" width="180" height="50" src={Logo} /></Button>
                             </div>
                             <div>
                                 {page}

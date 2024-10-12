@@ -154,29 +154,44 @@ export const snakeToTitleCase = (snakeCaseStr) => {
   return titleCaseStr;
 };
 
-export const calculateStandardQty = (base_unit, quantity) => {
+export const calculateStandardQty = (
+  base_unit = "",
+  quantity = 0,
+  size = 1
+) => {
   let std_qty = "";
   quantity = parseFloat(quantity);
 
+  // Check if quantity is a valid number
   if (isNaN(quantity)) {
     return "";
   }
+
+  // Check if base_unit is provided
+  if (!base_unit) {
+    return "";
+  }
+
   switch (base_unit) {
     case "GM":
-      std_qty = (quantity / 1000).toFixed(2) + " KG";
+      std_qty = ((quantity * size) / 1000).toFixed(2) + " KG";
       break;
     case "ML":
-      std_qty = (quantity / 1000).toFixed(2) + " LTR";
+      std_qty = ((quantity * size) / 1000).toFixed(2) + " LTR";
       break;
     case "KG":
-      std_qty = quantity.toFixed(2) + " KG";
+      std_qty = (quantity * size).toFixed(2) + " KG";
       break;
     case "LTR":
-      std_qty = quantity.toFixed(2) + " LTR";
+      std_qty = (quantity * size).toFixed(2) + " LTR";
+      break;
+    case "EACH":
+      std_qty = (quantity * size).toFixed(2) + " EACH";
       break;
     default:
-      std_qty = quantity.toString();
+      std_qty = (quantity * size).toString();
   }
+
   return std_qty;
 };
 

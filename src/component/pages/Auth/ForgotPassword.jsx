@@ -28,7 +28,7 @@ const ForgotPassword = () => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const [otpSent, setOtpSent] = useState(false);
-  const [time, setTime] = useState(180);
+  const [time, setTime] = useState(90);
   const [verifiedEmail, setVerifiedEmail] = useState(false);
 
   const toggleShowPassword = () => {

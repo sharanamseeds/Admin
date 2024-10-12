@@ -44,7 +44,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           }}
         >
           <Grid item>
-            <img src={logo} alt="Logo" width="138" height="32" style={{ cursor: 'pointer' }} onClick={() => {
+            <img src={logo} alt="Logo" width="180" height="50" style={{ cursor: 'pointer' }} onClick={() => {
               navigate("/")
             }} />
           </Grid>

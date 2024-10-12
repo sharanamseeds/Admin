@@ -65,6 +65,7 @@ function AddProduct() {
       if (!isValid) {
         return;
       }
+
       dispatch(startLoading());
 
       const newFormData = new FormData();
@@ -273,7 +274,7 @@ function AddProduct() {
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="date"
-                  name={"manufacture_date*"}
+                  name={"manufacture_date"}
                   error={errors?.manufacture_date?.message}
                   seperatedLabel={true}
                   startEdit={true}
@@ -284,7 +285,7 @@ function AddProduct() {
               <Grid item xs={12} md={6} >
                 <TextInput
                   type="date"
-                  name={"expiry_date*"}
+                  name={"expiry_date"}
                   error={errors?.expiry_date?.message}
                   seperatedLabel={true}
                   startEdit={true}
@@ -374,10 +375,20 @@ function AddProduct() {
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
+                <TextInput
+                  type="number"
+                  name={"size*"}
+                  error={errors?.size?.message}
+                  seperatedLabel={true}
+                  startEdit={true}
+                  handleChange={(name, value) => handleSelectChange('size', value)}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} sm={12}>
                 <FilledInput
                   style={{ display: 'flex', justifyContent: 'space-between' }}
                   label={"std_qty"}
-                  value={formData?.base_unit && formData?.quantity ? calculateStandardQty(formData?.base_unit, formData?.quantity) : "-"}
+                  value={formData?.base_unit && formData?.quantity ? calculateStandardQty(formData?.base_unit, formData?.quantity, formData?.size) : "-"}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>

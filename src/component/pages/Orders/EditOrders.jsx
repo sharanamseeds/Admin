@@ -89,6 +89,10 @@ function EditOrder() {
         documents.payment_details = formData.payment_details;
         delete tempFormData.payment_details;
       }
+      if (formData?.document) {
+        documents.document = formData.document;
+        delete tempFormData.document;
+      }
 
       objectToFormData(newFormData, documents);
 
@@ -446,6 +450,26 @@ function EditOrder() {
                     </div>
                   </Grid>
                 )}
+                <Grid item xs={12} sm={12} display="flex" flexDirection="column" alignItems="center">
+                  <ImageWithPreview
+                    src={formData?.document?.length > 0
+                      ? URL.createObjectURL(formData.document[0]) : ""}
+                    alt="document"
+                    height="102px"
+                    width="102px"
+                  />
+                </Grid>
+
+                <Grid item xs={12} md={6} lg={6} sm={12} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
+                  <div>
+                    <FileUpload
+                      inputName="document"
+                      defaultFiles={formData.document}
+                      error={errors?.document?.message}
+                      handleChange={(name, value) => handleSelectChange('document', value)}
+                    />
+                  </div>
+                </Grid>
 
                 {(order.is_creditable === false && (formData.status === 'delivered' || formData.status === "return_fulfilled")) && (
                   <Grid item xs={12} md={6} lg={4}>

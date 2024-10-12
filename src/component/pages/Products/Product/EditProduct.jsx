@@ -432,11 +432,22 @@ function EditProduct() {
                   handleChange={(name, value) => handleSelectChange('base_unit', value)}
                 />
               </Grid>
+              <Grid item xs={12} md={6} >
+                <TextInput
+                  type="number"
+                  name={"size"}
+                  error={errors?.size?.message}
+                  seperatedLabel={true}
+                  startEdit={true}
+                  handleChange={handleSelectChange}
+                  defaultValue={formData?.size || product?.size}
+                />
+              </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>
                 <FilledInput
                   style={{ display: 'flex', justifyContent: 'space-between' }}
                   label={"std_qty"}
-                  value={calculateStandardQty(formData?.base_unit || product?.base_unit, formData?.quantity || product?.quantity)}
+                  value={calculateStandardQty(formData?.base_unit || product?.base_unit, formData?.quantity || product?.quantity, formData?.size || product?.size)}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} sm={12}>

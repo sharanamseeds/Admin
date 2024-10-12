@@ -28,7 +28,7 @@ const Header = ({ drawerToggle }) => {
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <Grid item>
               <Box mt={0.5}>
-                <img src={logo} alt="Logo" width="138" height="32"
+                <img src={logo} alt="Logo" width="180" height="50"
                   style={{ cursor: 'pointer' }} onClick={() => {
                     navigate("/")
                   }} />
