@@ -263,12 +263,12 @@ const Default = () => {
           <Grid item xs={12} sm={6} md={3} >
             <CardComponent title="Account Details"
               subItems={[
-                { name: 'Paid Sell Money', value: data?.accounts?.paid?.sellAmount || 0 },
-                { name: 'Unpaid Sell Money', value: data?.accounts?.outstandings?.sellAmount || 0 },
+                { name: 'Credited Money', value: data?.accounts?.ledger?.totalCredit || 0 },
+                { name: 'Debited Money', value: data?.accounts?.ledger?.totalDebit || 0 },
                 // { name: 'Paid Buy Money', value: data?.accounts?.paid?.purchaseAmount || 0 },
                 // { name: 'Unpaid Buy Money', value: data?.accounts?.outstandings?.purchaseAmount || 0 }
               ]}
-              count={data?.accounts?.paid?.sellAmount || 0}
+              count={data?.accounts?.ledger?.finalBalance || 0}
               // count={data?.accounts?.on_hand || 0}
               icon={<RiMoneyRupeeCircleFill color={theme.palette.success.main} />}
               color={theme.palette.success.main} />
