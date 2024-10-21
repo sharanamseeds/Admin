@@ -34,17 +34,18 @@ function EditProduct() {
 
   const calculateGstAmount = (gst_percent, price) => {
     if (!gst_percent && !price) {
-      return null
+      return null;
     }
+
     if (gst_percent > 0) {
-      const gst =
-        (price * gst_percent) / 100;
-      const new_price = price + Number(gst.toFixed(2));
-      return new_price;
+      const gst = (Number(price) * Number(gst_percent)) / 100;
+      const new_price = Number(price) + Number(gst); // Ensure both are numbers
+      return new_price.toFixed(2); // Fixes to two decimal places and returns as a string
     } else {
-      return price;
+      return Number(price).toFixed(2); // Ensure price is a number and fixed to two decimal places
     }
-  }
+  };
+
 
   const handleSelectChange = (name, value) => {
     const keys = name.split(".");
