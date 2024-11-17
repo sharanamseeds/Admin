@@ -25,6 +25,7 @@ export const colors = {
   SUCCESS_LIGHT: "#33bc87",
 
   GREY_300: "#425466",
+  GREY_400: "#425466",
   DARK: "#343a40",
 
   BG_100: "#f8f8f9",
@@ -50,7 +51,7 @@ export const colors = {
   PAPER_DARK: "#232b38",
 
   MENU_HOVER: "#e3f2fd",
-  error:"red",
-  primary:"green",
-  info:"blue"
+  error: "red",
+  primary: "green",
+  info: "blue",
 };

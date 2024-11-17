@@ -66,3 +66,13 @@ code {
   margin-top: 16px !important;
   margin-bottom: 8px !important;
 }
+
+.editor_dis p,
+.editor_dis h1,
+.editor_dis h2,
+.editor_dis h3,
+.editor_dis h4,
+.editor_dis h5,
+.editor_dis h6 {
+  margin: 0.5rem 0 !important;
+}
