@@ -130,6 +130,10 @@ function EditProduct() {
       );
       if (response.data?.payload) {
         setProduct(response.data?.payload?.result?.product);
+        setFormData({
+          price: response.data?.payload?.result?.product?.price,
+          gst_percent: response.data?.payload?.result?.product?.gst_percent
+        })
       }
       dispatch(stopLoading());
     } catch (error) {
@@ -318,7 +322,7 @@ function EditProduct() {
                   seperatedLabel={true}
                   startEdit={true}
                   handleChange={handleSelectChange}
-                  defaultValue={formData?.gst_percent || product?.gst_percent}
+                  defaultValue={formData?.gst_percent}
                 />
               </Grid>
               <Grid item xs={12} md={6} >
@@ -329,7 +333,7 @@ function EditProduct() {
                   seperatedLabel={true}
                   startEdit={true}
                   handleChange={handleSelectChange}
-                  defaultValue={formData?.price || product?.price}
+                  defaultValue={formData?.price}
                 />
               </Grid>
               <Grid item xs={12} md={6} >

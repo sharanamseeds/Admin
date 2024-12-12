@@ -39,7 +39,7 @@ function OrdersList({ permission }) {
 
   const [filter, setFilter] = useState({
     sortField: "createdAt",
-    sortBy: "asc",
+    sortBy: "desc",
   });
 
   const fetchOrderList = async (search) => {
